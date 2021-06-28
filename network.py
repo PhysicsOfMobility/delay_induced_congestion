@@ -5,30 +5,32 @@ import numpy as np
 
 
 class Street:
-    # ! This is assuming t_0 = 1, N_0 = 10
-    ts = [None]
-    for N in range(1, 50):
-        ts.append(10 * (np.exp(N / 10) - 1) / N)
-
+    """ Street objects, on which the cars move."""
     def __init__(self, t_0, N_0, id=0):
+        """ Construct a street with ID id, empty travel time t_0 and capacity N_0. """
         self.N = 1  # one more than the actual number of cars on street
         self.id = id
         self.t_0 = t_0
         self.N_0 = N_0
 
     def t(self):
-        try:
-            return self.ts[self.N]
-        except IndexError:
-            return self.t_0 * self.N_0 * (np.exp(self.N / self.N_0) - 1) / self.N
+        return self.t_0 * self.N_0 * (np.exp(self.N / self.N_0) - 1) / self.N
 
 
 class Network:
-    """Streets are stored in a weird nested list. They also have an id which we use for some things.
-    It is basically 4*pointid + direction where pointid = nx*y + x. Not all ids exist because of the edges
+    """Streets are stored in a nested list. They also have an id.
+    It is 4*pointid + direction where pointid = nx*y + x. Not all ids exist.
     """
 
     def __init__(self, n_x=5, n_y=5, streetargs={"t_0": 1, "N_0": 10}):
+        """Construct a street network. 
+        
+        Keyword arguments:
+        n_x -- number of nodes in horizontal axis
+        n_y -- number of nodes in vertical axis
+        streetargs -- dictionary of street parameters t_0 and N_0
+        """
+        
         self.n_x = n_x
         self.n_y = n_y
         # special... corner cases...
@@ -93,8 +95,8 @@ class Network:
             top_row.append(node)
         top_row.append(top_right)
 
-        # list of alle nodes from bottom left to top right, rowwise.
-        # each node contains a list of streets objects: [up, left, down, right]
+        # List of all nodes from bottom left to top right, row-wise.
+        # Each node contains a list of street objects: [up, left, down, right]
         # None if no street is attached.
         self.streets = bottom_row + center_rows + top_row
         for i, x in enumerate(self.streets):
@@ -103,9 +105,9 @@ class Network:
                     y.id = 4 * i + j
 
     def get_streets_flat(self):
-        """get a flat list of all streets in the order in which they
+        """Get a flat list of all streets in the order in which they
         appear in streets. The list is such that network.get_streets_flat()[street.id] = street
-        It contains None entries
+        It contains None entries.
         """
         streets = []
         for row in self.streets:
@@ -166,15 +168,18 @@ class Network:
         return streetpaths
 
     def path_time(self, path):
+        """Total time needed to traverse a path of streets."""
         time = 0
         for street in path:
             time += street.t()
         return time
 
     def max_id(self):
+        """ The maximal possible street id in the network."""
         return self.n_x * self.n_y * 4
 
     def get_coords_from_id(self, id):
+        """ From the street id, return the (x,y) positions of attached nodes."""
         if id >= self.max_id():
             raise IndexError("The input id is greater than the maximum amount of streets")
         node_id = id // 4
@@ -201,6 +206,7 @@ class Network:
             raise ValueError("the requested street does not exist.")
 
     def get_point_from_pointid(self, id):
+        """From the point id, return the (x,y) position of the node."""
         x_0 = id % self.n_x
         y_0 = id // self.n_x
         return np.array([x_0, y_0])
