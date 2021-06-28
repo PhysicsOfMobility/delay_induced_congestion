@@ -3,7 +3,7 @@ import simpy as sp
 
 import analyse
 import storing_av
-from cars_av import Car, DummyCar
+from cars import Car, DummyCar
 from network_av import Network
 
 
