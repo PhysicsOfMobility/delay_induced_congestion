@@ -87,7 +87,7 @@ def do_sim(r=85, delay=15, t_0=1.0, N_0=10, beta=1.0, f=1.0, until=400.0, resolu
 
     t = 10  # seed simulation, to get data to check
     env.run(until=t)
-    while not analyse.is_congested(env, "runtime") and t <= until:  # while not congested and t smaller than end time
+    while not analyse.is_congested(env) and t <= until:  # while not congested and t smaller than end time
         t += 10
         env.run(until=t)
 
