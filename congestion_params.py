@@ -2,7 +2,6 @@ import csv
 import itertools
 import os
 import pickle
-
 import numpy as np
 from joblib import Parallel, delayed
 
@@ -22,8 +21,20 @@ def run_sims(
     outcomefn="congestion_params_rep100_tmax400.csv",
     n_jobs=-2,
 ):
-    """Run simulations all combinations of r, delay from rs, delays. Write the envs as pickles in files in pickledir
-    Write a summary as a csv into outcomefn
+    """Run simulations all combinations of (r, delay) from (rs, delays). 
+    Write the simulation envs as pickles in files in pickledir.
+    Write a summary as a csv into outcomefn.
+    
+    Keyword arguments:
+    until -- maximal duration of simulation
+    rs -- values of the in-rate parameter to simulate
+    delays -- values of the delay parameter to simulate
+    fs -- fractions of informed drivers
+    pointlist -- parameter combinations for each simulation; defined below if None
+    repetitions -- number of simulation runs per set of parameters
+    pickledir -- directory to store simulation environments
+    outcomefn -- filename of the output file
+    n_jobs -- number of jobs for parallel computation
     """
     outcomes = []
 
