@@ -1,5 +1,4 @@
 import pickle
-
 import numpy as np
 
 
@@ -19,7 +18,7 @@ def record_state(env, resolution=1):
 
 
 def load_env(fn, r=None, delay=None, repetition=None):
-    """Load a pickled environment from storage.
+    """Load a pickled environment from storage and return the environment.
     If r, delay, repetition are not given, interpret fn as a filename
     If they are given, fn is the directory in which a file is to be found according to the naming in congestion_params.py
     """
