@@ -2,7 +2,7 @@ import csv
 import os
 import pickle
 
-import analyse_av
+import analyse
 import simulation_av
 import storing_av
 
@@ -36,8 +36,8 @@ def run_sims(
     for point in pointlist:
         for i in range(repetitions):
             env = simulation_av.do_sim(r=point[0], delay=point[1], f=point[2], Tav=Tav, until=until + point[1])
-            tttime = analyse_av.total_real_time(env)
-            congested = analyse_av.is_congested(env)
+            tttime = analyse.total_real_time(env)
+            congested = analyse.is_congested(env)
             f_value = env.f
             outcomes.append([point[0], point[1], i, tttime, congested, f_value])
             dummyenv = simulation_av.DummyEnv(env)
@@ -65,8 +65,8 @@ def compute_congested(pickledir, outcomefn):
     for fn in os.listdir(pickledir):
         path = os.path.join(pickledir, fn)
         env = storing_av.load_env(path)
-        tttime = analyse_av.total_real_time(env)
-        congested = analyse_av.is_congested(env)
+        tttime = analyse.total_real_time(env)
+        congested = analyse.is_congested(env)
         outcomes.append([env.r, env.delay, env.repetition, tttime, congested])
 
     with open(outcomefn, "w") as file:
