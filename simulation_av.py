@@ -1,7 +1,7 @@
 import numpy as np
 import simpy as sp
 
-import analyse_av
+import analyse
 import storing_av
 from cars_av import Car, DummyCar
 from network_av import Network
@@ -94,7 +94,7 @@ def do_sim(
 
     t = 10  # seed simulation, to get data to check
     env.run(until=t)
-    while not analyse_av.is_congested(env, "runtime") and t <= until:  # while not congested and t smaller than end time
+    while not analyse.is_congested(env) and t <= until:  # while not congested and t smaller than end time
         t += 10
         env.run(until=t)
 
