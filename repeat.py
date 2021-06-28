@@ -5,7 +5,7 @@ import simulation
 
 def repeat_sim(repetitions, envs=True, *args, **kwargs):
     """Repeat the same simulation a given number of times.
-    Return a numpy array, which is all the state vectors stacked
+    Return a numpy array, which is all the state vectors stacked.
     If envs is True, return a np array of envs instead
     *args and **kwargs are passed to do_sim
     """
