@@ -20,25 +20,27 @@ def create_points(env):
 
 
 def car_creator(env, r, delay, f, beta):
-    """
-    r: avg rate of cars/time unit that spawn in the system
-    delay: delay, or 'age' of the data the driver bases their information on
-    beta: the beta param. for the probability distribution to choose the path
-    f: the proportion of cars that rely on traffic information to make their decision.
+    """Create new car objects
+    
+    Keyword arguments:
+    env -- simulation environment
+    r -- avg rate of (cars/time unit) that spawn in the system
+    delay -- information time delay
+    f -- fraction of informed drivers
+    beta -- parameter governing decision making in multinomial logit model
     """
     env.cars = []
     while True:
         dt = np.random.exponential(1 / r)
         yield env.timeout(dt)
         start, end = create_points(env)
-        # traffic_info = np.random.random() < f
         traffic_info = np.random.choice(np.array([0, 1]), p=np.array([1 - f, f]))
         if traffic_info == 1:
             traffic_info = True
         else:
             traffic_info = False
         env.cars.append((Car(env, start, end, delay, traffic_info, beta)))
-        # print(f"car created at {env.now} start: {start}, end: {end}")
+        
 
 
 class DummyEnv:
@@ -57,9 +59,19 @@ class DummyEnv:
         self.cars = [DummyCar(car) for car in env.cars]
 
 
-def do_sim(t_0=1, N_0=10, beta=1, r=85, delay=15, f=1, until=400, resolution=1):
-    """Run the simulation with given parametres.
+def do_sim(r=85, delay=15, t_0=1.0, N_0=10, beta=1.0, f=1.0, until=400.0, resolution=1.0):
+    """Run the simulation with given parameters.
     Return the simpy environment object which we use for storing everything about the simulation
+    
+    Keyword arguments:
+    r -- rate of incoming cars
+    delay -- information time delay
+    t_0 -- time needed to travel an empty street (default 1.0)
+    N_0 -- street capacity (default 10)
+    beta -- parameter governing decision making in multinomial logit model (default 1.0)
+    f -- fraction of informed drivers (default 1.0)
+    until -- simulation duration (default 400.0)
+    resolution -- time interval after which the simulation is recorded (default 1.0)
     """
     env = sp.Environment()
     env.t_0 = t_0
