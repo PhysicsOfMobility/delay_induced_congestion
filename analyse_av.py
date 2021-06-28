@@ -3,10 +3,10 @@ import numpy as np
 
 # TODO remove?
 def avg_time(env):
-    """calculate the average time a car needs for one segment, after the simulation has run,
-    from the state vector. This is weighted by cars
+    """Calculate the average time a car needs for one segment, after the simulation has run,
+    from the state vector. This is weighted by cars.
     ! This assumes N_0 and t_0 is equal for all streets
-    currently broken because non-existing streets have -1 entries
+    Non-existing streets have -1 entries.
     """
     print(f"assuming N_0={env.N_0}, t_0={env.t_0} for all streets")
     N = env.state
