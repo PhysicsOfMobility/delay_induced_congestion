@@ -14,6 +14,7 @@ class Street:
         self.N_0 = N_0
 
     def t(self):
+        """Compute travel time given the current number of cars on the street."""
         return self.t_0 * self.N_0 * (np.exp(self.N / self.N_0) - 1) / self.N
 
 
@@ -130,7 +131,7 @@ class Network:
         try:
             street = self.streets[index][direction]
         except NameError:
-            raise ValueError("The nodes you input are not adjacent.")
+            raise ValueError("The nodes you put in are not adjacent.")
 
         if street:
             if get_id:
@@ -138,7 +139,7 @@ class Network:
             else:
                 return street
         else:
-            raise ValueError("the connection leads out of the city")
+            raise ValueError("The connection leads out of the city")
 
     @lru_cache(maxsize=1024)
     def shortestpaths(self, start: Tuple[int, int], end: Tuple[int, int]) -> List[Street]:
@@ -203,7 +204,7 @@ class Network:
         if 0 <= x_1 < self.n_x and 0 <= y_1 < self.n_y:
             return (x_0, y_0), (x_1, y_1)
         else:
-            raise ValueError("the requested street does not exist.")
+            raise ValueError("The requested street does not exist.")
 
     def get_point_from_pointid(self, id):
         """From the point id, return the (x,y) position of the node."""
