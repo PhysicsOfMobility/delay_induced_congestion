@@ -65,10 +65,10 @@ class Car:
             self.real_time += wait
             self.steps_traveled += 1
             self.env.network.graph[street[0]][street[1]]['numcars'] += 1
-            self.env.network.graph.adjust_traveltime(street)
+            self.env.network.adjust_traveltime(street)
             yield self.env.timeout(wait)
             self.env.network.graph[street[0]][street[1]]['numcars'] -= 1
-            self.env.network.graph.adjust_traveltime(street)
+            self.env.network.adjust_traveltime(street)
 
 
 class DummyCar:
