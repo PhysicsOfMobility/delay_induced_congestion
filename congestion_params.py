@@ -13,15 +13,15 @@ import storing
 
 def run_sims(
     until=400,
-    rs=np.arange(70, 120, 2),
-    delays=range(0, 21),
+    rs=np.arange(220, 260, 5),
+    delays=range(0, 11),
     fs=[1],
     pointlist=None,
-    repetitions=100,
+    repetitions=10,
     pickledir=None,
-    outcomefn="congestion_params_rep100_tmax400.csv",
+    outcomefn="periodicgrid_congestion_params_rep10_tmax400.csv",
     n_jobs=-2,
-):
+    ):
     """Run simulations all combinations of (r, delay) from (rs, delays). 
     Write the simulation envs as pickles in files in pickledir.
     Write a summary as a csv into outcomefn.
@@ -54,7 +54,7 @@ def run_sims(
         """Joblib helper function for parallel execution"""
         env = simulation.do_sim(r=point[0], delay=point[1], f=point[2], until=until + point[1])
         tttime = analyse.total_real_time(env)
-        congested = analyse.is_congested(env, "runtime")
+        congested = analyse.is_congested(env)
         f_value = env.f
         informed_part = analyse.informed_drivers(env)
         outcomes.append([point[0], point[1], i, tttime, congested, f_value, informed_part])
@@ -75,70 +75,71 @@ def run_sims(
 
     print("Done")
     
+run_sims()
     
-def run_sims_averaging(
-    until=400,
-    rs=range(70, 122, 2),
-    delays=range(0, 21, 1),
-    Tav=50,
-    fs=(1,),
-    pointlist=None,
-    repetitions=100,
-    pickledir=None,
-    outcomefn="congestion_params_av50_rep100_tmax400.csv",
-):
-     """Run simulations with averaged information for all combinations of (r, delay) from (rs, delays). 
-    Write the simulation envs as pickles in files in pickledir.
-    Write a summary as a csv into outcomefn.
-    
-    Keyword arguments:
-    until -- maximal duration of simulation
-    rs -- values of the in-rate parameter to simulate
-    delays -- values of the delay parameter to simulate
-    Tav -- averaging time window (default 50)
-    fs -- fractions of informed drivers
-    pointlist -- parameter combinations for each simulation; defined below if None
-    repetitions -- number of simulation runs per set of parameters (default 100)
-    pickledir -- directory to store simulation environments
-    outcomefn -- filename of the output file
-    n_jobs -- number of jobs for parallel computation
-    """
-    
-    outcomes = []
-    j = 0  # just to show progress
-
-    # create dir if doesn't exist
-    if pickledir is not None and (not os.path.isdir(pickledir)):
-        os.mkdir(pickledir)
-
-    if pointlist is None:
-        pointlist = [(r, d, f) for r in rs for d in delays for f in fs]
-
-    N = len(pointlist) * repetitions  # total number of simulations to be ran
-
-    for point in pointlist:
-        for i in range(repetitions):
-            env = simulation_av.do_sim(r=point[0], delay=point[1], f=point[2], Tav=Tav, until=until + point[1])
-            tttime = analyse.total_real_time(env)
-            congested = analyse.is_congested(env)
-            f_value = env.f
-            outcomes.append([point[0], point[1], i, tttime, congested, f_value])
-            dummyenv = simulation_av.DummyEnv(env)
-            dummyenv.repetition = i
-            if pickledir is not None:
-                filename = os.path.join(pickledir, f"r{point[0]}delay{point[1]}rep{i}".replace(".", "_"))
-                with open(filename, "wb") as picklefile:
-                    pickle.dump(dummyenv, picklefile)
-
-            j += 1
-            perc = (j / N) * 100
-            print(f"\rSimulation {j:>5}/{N} done ({perc:.1f}%)", end="")
-
-    with open(outcomefn, "w") as file:
-        writer = csv.writer(file)
-
-        writer.writerow(["r", "delay", "repetition", "avgtime", "congested", "f"])
-        writer.writerows(outcomes)
+#def run_sims_averaging(
+#    until=400,
+#    rs=range(70, 122, 2),
+#    delays=range(0, 21, 1),
+#    Tav=50,
+#    fs=(1,),
+#    pointlist=None,
+#    repetitions=100,
+#    pickledir=None,
+#    outcomefn="congestion_params_av50_rep100_tmax400.csv"
+#    ):
+#    
+#     """Run simulations with averaged information for all combinations of (r, delay) from (rs, delays). 
+#    Write the simulation envs as pickles in files in pickledir.
+#    Write a summary as a csv into outcomefn.
+#    
+#    Keyword arguments:
+#    until -- maximal duration of simulation
+#    rs -- values of the in-rate parameter to simulate
+#    delays -- values of the delay parameter to simulate
+#    Tav -- averaging time window (default 50)
+#    fs -- fractions of informed drivers
+#    pointlist -- parameter combinations for each simulation; defined below if None
+#    repetitions -- number of simulation runs per set of parameters (default 100)
+#    pickledir -- directory to store simulation environments
+#    outcomefn -- filename of the output file
+#    n_jobs -- number of jobs for parallel computation
+#    """
+#    outcomes = []
+#    j = 0  # just to show progress
+#
+#    # create dir if doesn't exist
+#    if pickledir is not None and (not os.path.isdir(pickledir)):
+#        os.mkdir(pickledir)
+#
+#    if pointlist is None:
+#        pointlist = [(r, d, f) for r in rs for d in delays for f in fs]
+#
+#    N = len(pointlist) * repetitions  # total number of simulations to be ran
+#
+#    for point in pointlist:
+#        for i in range(repetitions):
+#            env = simulation_av.do_sim(r=point[0], delay=point[1], f=point[2], Tav=Tav, until=until + point[1])
+#            tttime = analyse.total_real_time(env)
+#            congested = analyse.is_congested(env)
+#            f_value = env.f
+#            outcomes.append([point[0], point[1], i, tttime, congested, f_value])
+#            dummyenv = simulation_av.DummyEnv(env)
+#            dummyenv.repetition = i
+#            if pickledir is not None:
+#                filename = os.path.join(pickledir, f"r{point[0]}delay{point[1]}rep{i}".replace(".", "_"))
+#                with open(filename, "wb") as picklefile:
+#                    pickle.dump(dummyenv, picklefile)
+#
+#            j += 1
+#            perc = (j / N) * 100
+#            print(f"\rSimulation {j:>5}/{N} done ({perc:.1f}%)", end="")
+#
+#    with open(outcomefn, "w") as file:
+#        writer = csv.writer(file)
+#
+#        writer.writerow(["r", "delay", "repetition", "avgtime", "congested", "f"])
+#        writer.writerows(outcomes)
 
 
 def compute_congested(pickledir, outcomefn):
