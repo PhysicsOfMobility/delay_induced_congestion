@@ -1,5 +1,3 @@
-from typing import Tuple
-
 import numpy as np
 
 
@@ -7,8 +5,8 @@ class Car:
     def __init__(
         self,
         env,
-        start: Tuple[int, int],
-        end: Tuple[int, int],
+        start: int,
+        end: int,
         delay=0.0,
         traffic_info=True,
         beta=1.0,
@@ -17,8 +15,8 @@ class Car:
         """ Initiate a car object in the simulation environment.
         
         Keyword arguments:
-        start -- origin of the driver (as a tuple giving the node position)
-        end -- destination of the driver (as a tuple giving the node position)
+        start -- origin of the driver (as a node index)
+        end -- destination of the driver (as a node index)
         delay -- information delay (default 0.0)
         traffic_info -- whether or not the driver decides based on signalled information (default True)
         beta -- parameter governing decision making in multinomial logit model (default 1.0)
@@ -63,12 +61,14 @@ class Car:
         yield self.env.timeout(self.delay)
         self.real_time = 0  # the actual time it will take to traverse the path
         for street in path:
-            wait = street.t()
+            wait = self.env.network.graph[street[0]][street[1]]['traveltime']
             self.real_time += wait
             self.steps_traveled += 1
-            street.N += 1
+            self.env.network.graph[street[0]][street[1]]['numcars'] += 1
+            self.env.network.graph.adjust_traveltime(street)
             yield self.env.timeout(wait)
-            street.N -= 1
+            self.env.network.graph[street[0]][street[1]]['numcars'] -= 1
+            self.env.network.graph.adjust_traveltime(street)
 
 
 class DummyCar:
