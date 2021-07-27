@@ -53,51 +53,6 @@ def total_real_time(env, exclude_first=20):
     return np.mean(t_travel)
 
 
-def inner_outer(env):
-    """Calculate distribution of traffic on inner and outer edges.
-    Only the outermost edges (forming a rectangle around the system) are considered 'outer'.
-    Return a np array in which the rows are the time steps and the columns are time, inner, outer
-    """
-    nx = env.network.n_x
-    ny = env.network.n_y
-    edge_low = list(range(0, 4 * nx, 4))
-    edge_high = list(range(4 * (ny - 1) * nx, 4 * ny * nx, 4))
-    edge_left = list(range(0, 4 * nx * ny, 4 * nx))
-    edge_right = list(range(4 * (nx - 1), 4 * nx * ny, 4 * nx))
-    outer_edges = []
-    for i in range(nx - 1):
-        outer_edges += [
-            edge_low[i] + 3,
-            edge_high[i] + 3,
-            edge_low[nx - 1 - i] + 1,
-            edge_high[nx - 1 - i] + 1,
-        ]
-
-    for i in range(ny - 1):
-        outer_edges += [
-            edge_left[i] + 0,
-            edge_right[i] + 0,
-            edge_left[ny - 1 - i] + 2,
-            edge_right[ny - 1 - i] + 2,
-        ]
-
-    n_outer = len(outer_edges)
-    n_total = np.count_nonzero(env.state[0] >= 0)
-    n_inner = n_total - n_outer
-    print(f"outer {n_outer}, inner {n_inner}")
-
-    result = np.empty(
-        (len(env.times), 3)
-    )  # a np array in which the rows are the time steps and the columns are time, inner, outer
-    result[:, 0] = env.times
-    outer = np.sum(env.state[:, outer_edges], axis=1) # total number of cars on outer edges
-    result[:, 1] = (np.sum(env.state * (env.state >= 0), axis=1) - outer) / n_inner
-    # * (env.state >= 0) to filter out all the entries which are -1 because street doesn't exist
-    result[:, 2] = outer / n_outer
-    
-    return result
-
-
 def total_cars(env):
     """ Calculate total # of cars in the system for all times. """
     result = np.empty((len(env.times), 2))
