@@ -3,7 +3,7 @@ import numpy as np
 
 
 def record_state(env, resolution=1):
-    """a simpy process to record the occupation numbers of all streets
+    """A simpy process to record the occupation numbers of all streets
     in regular intervals of size resolution
     """
     env.state_time_resolution = resolution
