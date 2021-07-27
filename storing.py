@@ -12,8 +12,7 @@ def record_state(env, resolution=1):
         yield env.timeout(resolution)
         current = np.zeros((1, len(streets)))
         for i, street in enumerate(streets):
-            if street is not None:
-                current[0, i] = street.N
+            current[0, i] = env.network.graph[street[0]][street[1]]['numcars']
         env.state = np.concatenate((env.state, current))
 
 
