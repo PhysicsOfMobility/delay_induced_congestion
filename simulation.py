@@ -8,15 +8,13 @@ from network import Network
 
 
 def create_points(env):
-    """creates random start points for the cars to drive between"""
-    x_0 = np.random.randint(env.network.n_x)
-    y_0 = np.random.randint(env.network.n_y)
-    x_1 = np.random.randint(env.network.n_x)
-    y_1 = np.random.randint(env.network.n_y)
-    if x_0 == x_1 and y_0 == y_1:
+    """creates random origin and destination nodes."""
+    node_0 = np.random.randint(env.network.num_nodes)
+    node_1 = np.random.randint(env.network.num_nodes)
+    if node_0 == node_1:
         return create_points(env)
     else:
-        return (x_0, y_0), (x_1, y_1)
+        return node_0, node_1
 
 
 def car_creator(env, r, delay, f, beta):
@@ -80,8 +78,8 @@ def do_sim(r=85, delay=15, t_0=1.0, N_0=10, beta=1.0, f=1.0, until=400.0, resolu
     env.delay = delay
     env.r = r
     env.f = f
-    env.network = Network(streetargs={"t_0": t_0, "N_0": N_0})
-    env.state = np.empty((0, env.network.max_id()))
+    env.network = Network(t_0 = t_0, N_0 = N_0)
+    env.state = np.empty((0, len(env.network.edges)))
     env.process(car_creator(env, r, delay, f, beta))
     env.process(storing.record_state(env, resolution=resolution))
 
