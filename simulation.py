@@ -78,7 +78,7 @@ def do_sim(r=85, delay=15, t_0=1.0, N_0=10, beta=1.0, f=1.0, until=400.0, resolu
     env.delay = delay
     env.r = r
     env.f = f
-    env.network = Network(t_0 = t_0, N_0 = N_0)
+    env.network = Network(num_nodes = 25, t_0 = t_0, N_0 = N_0)
     env.state = np.empty((0, len(env.network.edges)))
     env.process(car_creator(env, r, delay, f, beta))
     env.process(storing.record_state(env, resolution=resolution))
@@ -88,10 +88,7 @@ def do_sim(r=85, delay=15, t_0=1.0, N_0=10, beta=1.0, f=1.0, until=400.0, resolu
     while not analyse.is_congested(env) and t <= until:  # while not congested and t smaller than end time
         t += 10
         env.run(until=t)
-
-    env.state = (
-        env.state - 1
-    )  # to correct the fact that we always counted the number of cars + 1 on each road for simplicity
+        
     env.times = np.arange(resolution, env.now, resolution)
 
     return env
