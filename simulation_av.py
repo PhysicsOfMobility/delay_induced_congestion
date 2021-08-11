@@ -96,7 +96,7 @@ def do_sim(
     env.av_resolution = av_resolution
     env.r = r
     env.f = f
-    env.network = Network(num_nodes = num_nodes, t_0 = t_0, N_0 = N_0)
+    env.network = Network(env, num_nodes = num_nodes, t_0 = t_0, N_0 = N_0)
     env.numcars_dict = {}
     streets = env.network.get_streets_flat()
     # prepare the initial conditions for averaging
