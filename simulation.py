@@ -57,7 +57,7 @@ class DummyEnv:
         self.cars = [DummyCar(car) for car in env.cars]
 
 
-def do_sim(r=85, delay=15, t_0=1.0, N_0=10, beta=1.0, f=1.0, until=400.0, resolution=1.0):
+def do_sim(r=85, delay=15, t_0=1.0, N_0=10, beta=1.0, f=1.0, until=400.0, resolution=1.0, num_nodes=25):
     """Run the simulation with given parameters.
     Return the simpy environment object which we use for storing everything about the simulation
     
@@ -70,6 +70,7 @@ def do_sim(r=85, delay=15, t_0=1.0, N_0=10, beta=1.0, f=1.0, until=400.0, resolu
     f -- fraction of informed drivers (default 1.0)
     until -- simulation duration (default 400.0)
     resolution -- time interval after which the simulation is recorded (default 1.0)
+    num_nodes -- number of nodes in the grid (has to be quadratic!)
     """
     env = sp.Environment()
     env.t_0 = t_0
@@ -78,7 +79,7 @@ def do_sim(r=85, delay=15, t_0=1.0, N_0=10, beta=1.0, f=1.0, until=400.0, resolu
     env.delay = delay
     env.r = r
     env.f = f
-    env.network = Network(num_nodes = 25, t_0 = t_0, N_0 = N_0)
+    env.network = Network(num_nodes = num_nodes, t_0 = t_0, N_0 = N_0)
     env.state = np.empty((0, len(env.network.edges)))
     env.process(car_creator(env, r, delay, f, beta))
     env.process(storing.record_state(env, resolution=resolution))
