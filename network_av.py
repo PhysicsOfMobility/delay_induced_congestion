@@ -6,7 +6,7 @@ class Network:
     """Streets are edges of a directed networkx graph.
     """
     
-    def __init__(self, num_nodes = 25, t_0 = 1, N_0 = 10, periodic = True):
+    def __init__(self, env, num_nodes = 25, t_0 = 1, N_0 = 10, periodic = True):
         """Construct a street network, which is a networkx periodic directed grid. 
         
         Keyword arguments:
@@ -69,6 +69,7 @@ class Network:
         self.n_x = gridsize
         self.n_y = gridsize
         self.num_nodes = num_nodes
+        self.env = env
         
     def get_streets_flat(self):
         """Get a list of the tuples which define streets in the network."""
