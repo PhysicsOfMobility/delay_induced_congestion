@@ -3,6 +3,8 @@ import itertools
 import os
 import pickle
 import numpy as np
+import tempfile
+import shutil
 from joblib import Parallel, delayed
 
 import analyse
@@ -38,17 +40,26 @@ def run_sims(
     n_jobs -- number of jobs for parallel computation
     """
     
-    outcomes = []
 
     if pickledir is not None and (not os.path.isdir(pickledir)):
         os.mkdir(pickledir)
 
     if pointlist is None:
         pointlist = [(r, d, f) for r in rs for d in delays for f in fs]
-
+    
+    #Save the outcome of the parallel computations in a temporary directory.
+    #This is necessary because apparently, global arrays are not shared between subprocesses 
+    # in joblib. See https://stackoverflow.com/questions/34140560/accessing-and-altering-a-global-array-using-python-joblib 
+    
+    temppath = tempfile.mkdtemp()
+    outcomespath = os.path.join(temppath, 'outcomes.mmap')
+    columns = ["r", "delay", "repetition", "avgtime", "congested", "f", "informed"]
+    outcomes = np.memmap(outcomespath, dtype = float, shape = (len(pointlist), len(columns)), mode = 'w+')
+    
     # Parallel execution with joblib
     simlst = list(itertools.product(pointlist, range(repetitions)))
     print("Total number of simulation points:", len(simlst))
+    
 
     def run_sim_point(point, i):
         """Joblib helper function for parallel execution"""
@@ -57,7 +68,8 @@ def run_sims(
         congested = analyse.is_congested(env)
         f_value = env.f
         informed_part = analyse.informed_drivers(env)
-        outcomes.append([point[0], point[1], i, tttime, congested, f_value, informed_part])
+        point_idx = pointlist.index(point)
+        outcomes[point_idx, :] = np.array([point[0], point[1], i, tttime, congested, f_value, informed_part])
         dummyenv = simulation.DummyEnv(env)
         dummyenv.repetition = i
         if pickledir is not None:
@@ -70,9 +82,15 @@ def run_sims(
     # Save results
     with open(outcomefn, "w") as file:
         writer = csv.writer(file)
-        writer.writerow(["r", "delay", "repetition", "avgtime", "congested", "f", "informed"])
+        writer.writerow(columns)
         writer.writerows(outcomes)
 
+    # Delete the temporary directory and contents
+    try:
+        shutil.rmtree(temppath)
+    except OSError as e:
+        print ("Error: %s - %s." % (e.filename, e.strerror))
+        
     print("Done")
     
 run_sims()
