@@ -57,7 +57,17 @@ class DummyEnv:
         self.cars = [DummyCar(car) for car in env.cars]
 
 
-def do_sim(r=85, delay=15, t_0=1.0, N_0=10, beta=1.0, f=1.0, until=400.0, resolution=1.0, num_nodes=25):
+def do_sim(
+        r=85, 
+        delay=15, 
+        t_0=1.0, 
+        N_0=10, 
+        beta=1.0, 
+        f=1.0, 
+        until=400.0, 
+        resolution=1.0, 
+        num_nodes=25
+        ):
     """Run the simulation with given parameters.
     Return the simpy environment object which we use for storing everything about the simulation
     
