@@ -8,33 +8,37 @@ from network_av import Network
 
 
 def create_points(env):
-    """creates random start points for the cars to drive between"""
-    x_0 = np.random.randint(env.network.n_x)
-    y_0 = np.random.randint(env.network.n_y)
-    x_1 = np.random.randint(env.network.n_x)
-    y_1 = np.random.randint(env.network.n_y)
-    if x_0 == x_1 and y_0 == y_1:
+    """creates random origin and destination nodes."""
+    node_0 = np.random.randint(env.network.num_nodes)
+    node_1 = np.random.randint(env.network.num_nodes)
+    if node_0 == node_1:
         return create_points(env)
     else:
-        return (x_0, y_0), (x_1, y_1)
+        return node_0, node_1
 
 
 def car_creator(env, r, delay, f, beta):
-    """
-    r: avg rate of cars/time unit that spawn in the system
-    delay: delay, or 'age' of the data the driver bases their information on
-    beta: the beta param. for the probability distribution to choose the path
-    f: the proportion of cars that rely on traffic information to make their decision.
+    """Create new car objects
+    
+    Keyword arguments:
+    env -- simulation environment
+    r -- avg rate of (cars/time unit) that spawn in the system
+    delay -- information time delay
+    f -- fraction of informed drivers
+    beta -- parameter governing decision making in multinomial logit model
     """
     env.cars = []
     while True:
         dt = np.random.exponential(1 / r)
         yield env.timeout(dt)
         start, end = create_points(env)
-        traffic_info = True
+        traffic_info = np.random.choice(np.array([0, 1]), p=np.array([1 - f, f]))
+        if traffic_info == 1:
+            traffic_info = True
+        else:
+            traffic_info = False
         env.cars.append((Car(env, start, end, delay, traffic_info, beta)))
-        # print(f"car created at {env.now} start: {start}, end: {end}")
-
+        
 
 class DummyEnv:
     """ For storing data about a simulation, to be able to pickle it """
@@ -53,20 +57,35 @@ class DummyEnv:
 
 
 def do_sim(
-    t_0=1,
-    N_0=10,
-    beta=1,
-    r=10,
-    delay=5,
-    f=1,
-    until=20,
-    resolution=1,
-    Tav=10,
-    av_resolution=0.1,
-    Ninit=1,
-):
-    """Run the simulation with given parametres.
-    Return the simpy Environment object which we use for storing everything about the simulation
+        r=10,
+        delay=5,
+        t_0=1,
+        N_0=10,
+        beta=1,
+        f=1,
+        until=20,
+        resolution=1,
+        num_nodes=25,
+        Tav=10,
+        av_resolution=0.1,
+        Ninit=0,
+        ):
+    """Run the simulation with given parameters.
+    Return the simpy environment object which we use for storing everything about the simulation
+    
+    Keyword arguments:
+    r -- rate of incoming cars
+    delay -- information time delay
+    t_0 -- time needed to travel an empty street (default 1.0)
+    N_0 -- street capacity (default 10)
+    beta -- parameter governing decision making in multinomial logit model (default 1.0)
+    f -- fraction of informed drivers (default 1.0)
+    until -- simulation duration (default 400.0)
+    resolution -- time interval after which the simulation is recorded (default 1.0)
+    num_nodes -- number of nodes in the grid (has to be quadratic!)
+    Tav -- averaging time window
+    av_resolution -- interval between snapshots of street loads which are used for averaging
+    Ninit -- initial number of cars on all streets
     """
     env = sp.Environment()
     env.t_0 = t_0
@@ -77,7 +96,7 @@ def do_sim(
     env.av_resolution = av_resolution
     env.r = r
     env.f = f
-    env.network = Network(env, streetargs={"t_0": t_0, "N_0": N_0})
+    env.network = Network(num_nodes = num_nodes, t_0 = t_0, N_0 = N_0)
     env.numcars_dict = {}
     streets = env.network.get_streets_flat()
     # prepare the initial conditions for averaging
@@ -87,7 +106,7 @@ def do_sim(
         for _ in range(0, int(max_listlength)):
             env.numcars_dict[street]["num_list"].append(Ninit)
         env.numcars_dict[street].update({"num_sum": sum(env.numcars_dict[street]["num_list"])})
-    env.state = np.empty((0, env.network.max_id()))
+    env.state = np.empty((0, len(env.network.edges)))
     env.process(car_creator(env, r, delay, f, beta))
     env.process(storing_av.record_state(env, resolution=resolution))
     env.process(storing_av.update_list(env, resolution=av_resolution))
@@ -98,9 +117,6 @@ def do_sim(
         t += 10
         env.run(until=t)
 
-    env.state = (
-        env.state - 1
-    )  # to correct the fact that we always counted the number of cars + 1 on each road for simplicity
     env.times = np.arange(resolution, env.now, resolution)
 
     return env
