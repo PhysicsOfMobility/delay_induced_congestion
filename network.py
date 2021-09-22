@@ -122,4 +122,19 @@ class Network:
             
         return time
     
+    def node_positions(self, edge_length=1):
+        """Find x and y coordinates of all nodes in the grid."""
+        
+        pos_dict = {}
+        
+        gridsize = self.n_x
+        current_node = 0
+        for row_idx, row in enumerate(np.arange(0, gridsize, 1)):
+            for col_idx, col in enumerate(np.arange(0, gridsize, 1)):
+                xval = col * edge_length
+                yval = (gridsize-1-row) * edge_length
+                pos_dict.update({current_node: (xval, yval)})
+                current_node += 1
+        
+        return pos_dict
 
