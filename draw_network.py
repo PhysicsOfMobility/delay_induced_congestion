@@ -60,65 +60,70 @@ def plot_network(
         data_to_map = env.state[t_index]
     else:
         data_to_map = alternative_data
-
+    
+    node_positions = env.network.node_positions()
+    
     # draw all edges between nodes
-    for i, x in enumerate(data_to_map):
-        try:  # if street is None, dont draw an edge
-            start, end = env.network.get_coords_from_id(i)
-        except ValueError:
-            continue
+    for i, x in enumerate(data_to_map[:]):
+        (start, end) = env.network.edges[i]
+        start_pos = node_positions[start]
+        end_pos = node_positions[end]
         # get color of streets from street loads
         if cmap:
             line_there_color = line_back_color = cmap(x)
             line_back_outline = line_there_outline = line_there_color
 
-        if i % 4 == 0:  # draw lanes going up
-            start = np.array(start) * scale
-            start[0] += circle_diameter / 2 + edge_spacing
-            start[1] = height - start[1] - circle_diameter / 2
-            end = np.array(end) * scale
-            end[0] += circle_diameter / 2 + edge_spacing
-            end[0] += 3 * car_on_street_scale
-            end[1] = height - end[1] - circle_diameter / 2
-            line_coords = list(start) + list(end)
+        if end == start - env.network.n_x:  # draw lanes going up
+            print((start, end), ' goes up')
+            start_pos = np.array(start_pos) * scale
+            start_pos[0] += circle_diameter / 2 + edge_spacing
+            start_pos[1] = height - start_pos[1] - circle_diameter / 2
+            end_pos = np.array(end_pos) * scale
+            end_pos[0] += circle_diameter / 2 + edge_spacing
+            end_pos[0] += 3 * car_on_street_scale
+            end_pos[1] = height - end_pos[1] - circle_diameter / 2
+            line_coords = list(start_pos) + list(end_pos)
             draw.rectangle(line_coords, fill=line_there_color, outline=line_there_outline, width=border_width)
 
-        elif i % 4 == 2:  # draw lanes going down
-            start = np.array(start) * scale
-            start[0] += circle_diameter / 2 - edge_spacing
-            start[1] = height - start[1] - circle_diameter / 2
-            end = np.array(end) * scale
-            end[0] += circle_diameter / 2 - edge_spacing
-            end[0] -= 3 * car_on_street_scale
-            end[1] = height - end[1] - circle_diameter / 2
-            line_coords = list(start) + list(end)
+        elif end == start + env.network.n_x:  # draw lanes going down
+            print((start, end), ' goes down')
+            start_pos = np.array(start_pos) * scale
+            start_pos[0] += circle_diameter / 2 - edge_spacing
+            start_pos[1] = height - start_pos[1] - circle_diameter / 2
+            end_pos = np.array(end_pos) * scale
+            end_pos[0] += circle_diameter / 2 - edge_spacing
+            end_pos[0] -= 3 * car_on_street_scale
+            end_pos[1] = height - end_pos[1] - circle_diameter / 2
+            line_coords = list(start_pos) + list(end_pos)
             draw.rectangle(line_coords, fill=line_back_color, outline=line_back_outline, width=border_width)
 
-        elif i % 4 == 3:  # draw lanes going right
-            start = np.array(start) * scale
-            start[0] += circle_diameter / 2
-            start[1] = height - start[1] - circle_diameter / 2 + edge_spacing
-            end = np.array(end) * scale
-            end[0] += circle_diameter / 2
-            end[1] = height - end[1] - circle_diameter / 2 + edge_spacing
-            end[1] += 3 * car_on_street_scale
-            line_coords = list(start) + list(end)
+        elif end == start + 1:  # draw lanes going right
+            print((start, end), ' goes right')
+            start_pos = np.array(start_pos) * scale
+            start_pos[0] += circle_diameter / 2
+            start_pos[1] = height - start_pos[1] - circle_diameter / 2 + edge_spacing
+            end_pos = np.array(end_pos) * scale
+            end_pos[0] += circle_diameter / 2
+            end_pos[1] = height - end_pos[1] - circle_diameter / 2 + edge_spacing
+            end_pos[1] += 3 * car_on_street_scale
+            line_coords = list(start_pos) + list(end_pos)
             draw.rectangle(line_coords, fill=line_there_color, outline=line_there_outline, width=border_width)
 
-        elif i % 4 == 1:  # draw lanes going left
-            start = np.array(start) * scale
-            start[0] += circle_diameter / 2
-            start[1] = height - start[1] - circle_diameter / 2 - edge_spacing
-            end = np.array(end) * scale
-            end[0] += circle_diameter / 2
-            end[1] = height - end[1] - circle_diameter / 2 - edge_spacing
-            end[1] -= 3 * car_on_street_scale
-            line_coords = list(start) + list(end)
+        elif end == start - 1:  # draw lanes going left
+            print((start, end), ' goes left')
+            start_pos = np.array(start_pos) * scale
+            start_pos[0] += circle_diameter / 2
+            start_pos[1] = height - start_pos[1] - circle_diameter / 2 - edge_spacing
+            end_pos = np.array(end_pos) * scale
+            end_pos[0] += circle_diameter / 2
+            end_pos[1] = height - end_pos[1] - circle_diameter / 2 - edge_spacing
+            end_pos[1] -= 3 * car_on_street_scale
+            line_coords = list(start_pos) + list(end_pos)
             draw.rectangle(line_coords, fill=line_back_color, outline=line_back_outline, width=border_width)
 
     # draw nodes over edges
-    for i, x in enumerate(env.network.streets):
-        bottom_left = env.network.get_point_from_pointid(i) * scale
+    for i, x in enumerate(env.network.edges):
+        bottom_left = np.array(node_positions[x[0]]) * scale
         bottom_left[1] = height - bottom_left[1] - circle_diameter
         bounding_box = list(bottom_left) + list(bottom_left + circle_diameter)
         draw.ellipse(tuple(bounding_box), fill=circle_color, outline=circle_outline, width=border_width_circle)
