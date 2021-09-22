@@ -12,7 +12,7 @@ def record_state(env, resolution=1):
         yield env.timeout(resolution)
         current = np.zeros((1, len(streets)))
         for i, street in enumerate(streets):
-            current[0, i] = env.network.graph[street[0]][street[1]]['numcars']
+            current[0, i] = env.network.graph[street[0]][street[1]]["numcars"]
         env.state = np.concatenate((env.state, current))
 
 
@@ -27,14 +27,14 @@ def update_list(env, resolution=0.1):
         if env.now >= env.delay:
             for i, street in enumerate(streets):
                 env.numcars_dict[street]["num_sum"] = (
-                    env.numcars_dict[street]["num_sum"] 
-                    - env.numcars_dict[street]["num_list"][0] 
-                    + env.network.graph[street[0]][street[1]]['numcars']
+                    env.numcars_dict[street]["num_sum"]
+                    - env.numcars_dict[street]["num_list"][0]
+                    + env.network.graph[street[0]][street[1]]["numcars"]
                 )
                 env.numcars_dict[street]["num_list"].pop(0)
                 env.numcars_dict[street]["num_list"].append(
-                        env.network.graph[street[0]][street[1]]['numcars'])
-                    
+                    env.network.graph[street[0]][street[1]]["numcars"]
+                )
 
 
 def load_env(fn, r=None, delay=None, repetition=None):

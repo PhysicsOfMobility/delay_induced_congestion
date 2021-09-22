@@ -17,4 +17,3 @@ def repeat_sim(repetitions, envs=True, *args, **kwargs):
             states.append(simulation.do_sim(*args, **kwargs).state)
 
     return np.stack(states)
-

@@ -9,7 +9,9 @@ def avg_time(env):
     print(f"assuming N_0={env.N_0}, t_0={env.t_0} for all streets")
     N = env.state
 
-    return np.sum(env.t_0 * env.N_0 * (np.exp(N / env.N_0) - 1), axis=1) / np.sum(N, axis=1)
+    return np.sum(env.t_0 * env.N_0 * (np.exp(N / env.N_0) - 1), axis=1) / np.sum(
+        N, axis=1
+    )
 
 
 def avg_expected_time(env, exclude_first=7):
@@ -30,8 +32,8 @@ def avg_expected_time(env, exclude_first=7):
 
 def avg_real_time(env, exclude_first=7):
     """Calculate the average time per edge cars starting at t_start actually needed
-    to travel the system. 
-    Only draw time from cars that have reached the end of their path 
+    to travel the system.
+    Only draw time from cars that have reached the end of their path
     at the end of the simulation.
     Return array of start-times and array of travel-times.
     """
@@ -45,7 +47,7 @@ def avg_real_time(env, exclude_first=7):
 
 
 def total_real_time(env, exclude_first=20):
-    """Calculate the average time per edge cars need, during the whole simulation, 
+    """Calculate the average time per edge cars need, during the whole simulation,
     excluding those who started before time exclude_first.
     """
     _, t_travel = avg_real_time(env, exclude_first)
@@ -53,7 +55,7 @@ def total_real_time(env, exclude_first=20):
 
 
 def total_cars(env):
-    """ Calculate total # of cars in the system for all measurement times. """
+    """Calculate total # of cars in the system for all measurement times."""
     result = np.empty((len(env.times), 2))
     result[:, 0] = env.times
 
@@ -62,7 +64,7 @@ def total_cars(env):
 
 
 def informed_drivers(env):
-    """ Return the fraction of informed drivers. """
+    """Return the fraction of informed drivers."""
     num_informed = 0
     num_uninformed = 0
 
@@ -78,10 +80,10 @@ def informed_drivers(env):
 
 
 def is_congested(env, boundary=100):
-    """Determine whether the network is congested. 
+    """Determine whether the network is congested.
     Return True if one street has more cars than the boundary value.
     """
-    
+
     cars_on_roads = env.state[-1]
     crit = np.max(cars_on_roads)
     if crit > boundary:
@@ -94,18 +96,18 @@ def is_congested(env, boundary=100):
 
 
 def all_cars_streetwise(env):
-    """ Return the summed cars on each street. """
+    """Return the summed cars on each street."""
     cars = np.sum(env.state, axis=0)
     return cars
 
 
 def avg_cars_streetwise(info, data_type, exclude_first=5):
-    """ Return the average number of cars on each street from 
+    """Return the average number of cars on each street from
     either env (data_type "environment")
     or from env.state (data_type "statevector").
     Only start measuring after exclude_first measurements
     """
-    
+
     if data_type == "environment":
         cars = np.mean(info.state[exclude_first:, :], axis=0)
     elif data_type == "statevector":

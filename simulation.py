@@ -19,7 +19,7 @@ def create_points(env):
 
 def car_creator(env, r, delay, f, beta):
     """Create new car objects
-    
+
     Keyword arguments:
     env -- simulation environment
     r -- avg rate of (cars/time unit) that spawn in the system
@@ -38,11 +38,10 @@ def car_creator(env, r, delay, f, beta):
         else:
             traffic_info = False
         env.cars.append((Car(env, start, end, delay, traffic_info, beta)))
-        
 
 
 class DummyEnv:
-    """ For storing data about a simulation, to be able to pickle it """
+    """For storing data about a simulation, to be able to pickle it"""
 
     def __init__(self, env: sp.Environment):
         self.t_0, self.N_0, self.delay, self.r, self.f = (
@@ -58,20 +57,20 @@ class DummyEnv:
 
 
 def do_sim(
-        r=85, 
-        delay=15, 
-        t_0=1.0, 
-        N_0=10, 
-        beta=1.0, 
-        f=1.0, 
-        until=400.0, 
-        resolution=1.0, 
-        num_nodes=25,
-        periodic=True
-        ):
+    r=85,
+    delay=15,
+    t_0=1.0,
+    N_0=10,
+    beta=1.0,
+    f=1.0,
+    until=400.0,
+    resolution=1.0,
+    num_nodes=25,
+    periodic=True,
+):
     """Run the simulation with given parameters.
     Return the simpy environment object which we use for storing everything about the simulation
-    
+
     Keyword arguments:
     r -- rate of incoming cars
     delay -- information time delay
@@ -91,17 +90,19 @@ def do_sim(
     env.delay = delay
     env.r = r
     env.f = f
-    env.network = Network(num_nodes = num_nodes, t_0 = t_0, N_0 = N_0, periodic=periodic)
+    env.network = Network(num_nodes=num_nodes, t_0=t_0, N_0=N_0, periodic=periodic)
     env.state = np.empty((0, len(env.network.edges)))
     env.process(car_creator(env, r, delay, f, beta))
     env.process(storing.record_state(env, resolution=resolution))
 
     t = 10  # seed simulation, to get data to check
     env.run(until=t)
-    while not analyse.is_congested(env) and t <= until:  # while not congested and t smaller than end time
+    while (
+        not analyse.is_congested(env) and t <= until
+    ):  # while not congested and t smaller than end time
         t += 10
         env.run(until=t)
-        
+
     env.times = np.arange(resolution, env.now, resolution)
 
     return env

@@ -11,9 +11,9 @@ class Car:
         traffic_info=True,
         beta=1.0,
     ):
-        
-        """ Initiate a car object in the simulation environment.
-        
+
+        """Initiate a car object in the simulation environment.
+
         Keyword arguments:
         start -- origin of the driver (as a node index)
         end -- destination of the driver (as a node index)
@@ -21,12 +21,12 @@ class Car:
         traffic_info -- whether or not the driver decides based on signalled information (default True)
         beta -- parameter governing decision making in multinomial logit model (default 1.0)
         """
-        
+
         self.env = env
         self.start = start
         self.end = end
         # How old is the traffic information the cars base their choice on (if they use it)?
-        self.delay = delay  
+        self.delay = delay
         # Does the car use traffic information at all to choose their path?
         self.traffic_info = traffic_info
         self.beta = beta
@@ -36,14 +36,16 @@ class Car:
         self.expected_time = 0
 
     def run(self):
-        """ Choose a path from origin to destination, and travel on it. """
-        paths = self.env.network.shortestpaths(self.start, self.end)  # possible paths to consider
+        """Choose a path from origin to destination, and travel on it."""
+        paths = self.env.network.shortestpaths(
+            self.start, self.end
+        )  # possible paths to consider
         times = np.array([self.env.network.path_time(path) for path in paths])
         # Subtract a constant value from all times. This doesn't affect the
-        # outcome because this results in a constant factor for the  probabilities 
+        # outcome because this results in a constant factor for the  probabilities
         # which will be normalised.
         # This helps avoid division by zero if p gets too small
-        times_corrected = times - min(times)  
+        times_corrected = times - min(times)
         if self.traffic_info:
             p = np.exp(-1 * self.beta * times_corrected)
         else:
@@ -61,18 +63,19 @@ class Car:
         yield self.env.timeout(self.delay)
         self.real_time = 0  # the actual time it will take to traverse the path
         for street in path:
-            wait = self.env.network.graph[street[0]][street[1]]['traveltime']
+            wait = self.env.network.graph[street[0]][street[1]]["traveltime"]
             self.real_time += wait
             self.steps_traveled += 1
-            self.env.network.graph[street[0]][street[1]]['numcars'] += 1
+            self.env.network.graph[street[0]][street[1]]["numcars"] += 1
             self.env.network.adjust_traveltime(street)
             yield self.env.timeout(wait)
-            self.env.network.graph[street[0]][street[1]]['numcars'] -= 1
+            self.env.network.graph[street[0]][street[1]]["numcars"] -= 1
             self.env.network.adjust_traveltime(street)
 
 
 class DummyCar:
-    """A dummy class for storing the attributes associated with the car. """
+    """A dummy class for storing the attributes associated with the car."""
+
     def __init__(self, car: Car):
         self.start, self.end, self.delay, self.traffic_info = (
             car.start,

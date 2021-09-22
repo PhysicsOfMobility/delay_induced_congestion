@@ -175,8 +175,12 @@ cb1.set_label("average number of cars", fontsize=14)
 # Figure 4e shows the street loads as a function of time on two alternative routes toward the center. (See the pdf-file *StreetNetwork_5x5Grid.pdf* for the indices corresponding to each street)
 
 # %%
-plt.plot(env_tau15.times, env_tau15.state[:, 74] + env_tau15.state[:, 53], label="route 1")
-plt.plot(env_tau15.times, env_tau15.state[:, 73] + env_tau15.state[:, 70], label="route 2")
+plt.plot(
+    env_tau15.times, env_tau15.state[:, 74] + env_tau15.state[:, 53], label="route 1"
+)
+plt.plot(
+    env_tau15.times, env_tau15.state[:, 73] + env_tau15.state[:, 70], label="route 2"
+)
 
 plt.xlabel("time", fontsize=14)
 plt.ylabel("number of vehicles", fontsize=14)
@@ -299,17 +303,23 @@ congestion_params.run_sims(
 # Finally, we evaluate the simulation results and compare them for the three delays.
 
 # %%
-stab_matrix_del1 = stability_matrix.stability_varyf(outcomefile_delay1, delay=1, rvals=inrate_vals1)
+stab_matrix_del1 = stability_matrix.stability_varyf(
+    outcomefile_delay1, delay=1, rvals=inrate_vals1
+)
 critvals_del1 = stability_matrix.critical_rates(
     stab_matrix_del1, rvals=inrate_vals1, delay=1, boundvals=[0.25, 0.5, 0.75]
 )
 
-stab_matrix_del5 = stability_matrix.stability_varyf(outcomefile_delay5, delay=5, rvals=inrate_vals5)
+stab_matrix_del5 = stability_matrix.stability_varyf(
+    outcomefile_delay5, delay=5, rvals=inrate_vals5
+)
 critvals_del5 = stability_matrix.critical_rates(
     stab_matrix_del5, rvals=inrate_vals5, delay=5, boundvals=[0.25, 0.5, 0.75]
 )
 
-stab_matrix_del15 = stability_matrix.stability_varyf(outcomefile_delay15, delay=15, rvals=inrate_vals15)
+stab_matrix_del15 = stability_matrix.stability_varyf(
+    outcomefile_delay15, delay=15, rvals=inrate_vals15
+)
 critvals_del15 = stability_matrix.critical_rates(
     stab_matrix_del15, rvals=inrate_vals15, delay=15, boundvals=[0.25, 0.5, 0.75]
 )
