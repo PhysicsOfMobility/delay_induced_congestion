@@ -2,10 +2,9 @@ import numpy as np
 
 
 def avg_time(env):
-    """Calculate the average time a car needs for one segment, after the simulation has run,
-    from the state vector. This is weighted by cars.
+    """Calculate the average time a car needs for one segment at each measurement time,
+    after the simulation has run, from the state vector. This is weighted by cars.
     ! This assumes N_0 and t_0 is equal for all streets
-    Non-existing streets have -1 entries.
     """
     print(f"assuming N_0={env.N_0}, t_0={env.t_0} for all streets")
     N = env.state
@@ -54,7 +53,7 @@ def total_real_time(env, exclude_first=20):
 
 
 def total_cars(env):
-    """ Calculate total # of cars in the system for all times. """
+    """ Calculate total # of cars in the system for all measurement times. """
     result = np.empty((len(env.times), 2))
     result[:, 0] = env.times
 
@@ -100,15 +99,16 @@ def all_cars_streetwise(env):
     return cars
 
 
-def avg_cars_streetwise(info, data_type):
+def avg_cars_streetwise(info, data_type, exclude_first=50):
     """ Return the average number of cars on each street from 
     either env (data_type "environment")
-    or from env.state (data_type "statevector")
+    or from env.state (data_type "statevector").
+    Only start measuring after exclude_first measurements
     """
     
     if data_type == "environment":
-        cars = np.mean(info.state[50:, :], axis=0)
+        cars = np.mean(info.state[exclude_first:, :], axis=0)
     elif data_type == "statevector":
-        cars = np.mean(info[50:, :], axis=0)
+        cars = np.mean(info[exclude_first:, :], axis=0)
 
     return cars
