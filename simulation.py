@@ -66,7 +66,8 @@ def do_sim(
         f=1.0, 
         until=400.0, 
         resolution=1.0, 
-        num_nodes=25
+        num_nodes=25,
+        periodic=True
         ):
     """Run the simulation with given parameters.
     Return the simpy environment object which we use for storing everything about the simulation
@@ -81,6 +82,7 @@ def do_sim(
     until -- simulation duration (default 400.0)
     resolution -- time interval after which the simulation is recorded (default 1.0)
     num_nodes -- number of nodes in the grid (has to be quadratic!)
+    periodic -- if True, the street network has periodic boundary conditions
     """
     env = sp.Environment()
     env.t_0 = t_0
@@ -89,7 +91,7 @@ def do_sim(
     env.delay = delay
     env.r = r
     env.f = f
-    env.network = Network(num_nodes = num_nodes, t_0 = t_0, N_0 = N_0)
+    env.network = Network(num_nodes = num_nodes, t_0 = t_0, N_0 = N_0, periodic=periodic)
     env.state = np.empty((0, len(env.network.edges)))
     env.process(car_creator(env, r, delay, f, beta))
     env.process(storing.record_state(env, resolution=resolution))

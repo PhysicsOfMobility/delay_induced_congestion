@@ -69,6 +69,7 @@ def do_sim(
         Tav=10,
         av_resolution=0.1,
         Ninit=0,
+        periodic=True,
         ):
     """Run the simulation with given parameters.
     Return the simpy environment object which we use for storing everything about the simulation
@@ -86,6 +87,7 @@ def do_sim(
     Tav -- averaging time window
     av_resolution -- interval between snapshots of street loads which are used for averaging
     Ninit -- initial number of cars on all streets
+    periodic -- if True, the street network has periodic boundary conditions
     """
     env = sp.Environment()
     env.t_0 = t_0
@@ -96,7 +98,7 @@ def do_sim(
     env.av_resolution = av_resolution
     env.r = r
     env.f = f
-    env.network = Network(env, num_nodes = num_nodes, t_0 = t_0, N_0 = N_0)
+    env.network = Network(env, num_nodes = num_nodes, t_0 = t_0, N_0 = N_0, periodic=periodic)
     env.numcars_dict = {}
     streets = env.network.get_streets_flat()
     # prepare the initial conditions for averaging

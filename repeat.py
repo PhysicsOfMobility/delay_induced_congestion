@@ -18,12 +18,3 @@ def repeat_sim(repetitions, envs=True, *args, **kwargs):
 
     return np.stack(states)
 
-
-def vectorize(func):
-    def vectorfunc(stackedstates):
-        results = []
-        for state in stackedstates:
-            results.append(func(state))
-        return np.stack(results)
-
-    return vectorfunc

@@ -99,7 +99,7 @@ def all_cars_streetwise(env):
     return cars
 
 
-def avg_cars_streetwise(info, data_type, exclude_first=50):
+def avg_cars_streetwise(info, data_type, exclude_first=5):
     """ Return the average number of cars on each street from 
     either env (data_type "environment")
     or from env.state (data_type "statevector").

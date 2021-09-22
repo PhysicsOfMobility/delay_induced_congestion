@@ -14,14 +14,15 @@ import storing
 
 
 def run_sims(
+    periodic=True,
     until=400,
-    rs=np.arange(210, 260, 5),
-    delays=range(0, 16),
-    fs=[1],
+    rs=np.arange(180, 256, 2),
+    delays=[0],
+    fs=[0.1],
     pointlist=None,
-    repetitions=10,
+    repetitions=100,
     pickledir=None,
-    outcomefn="periodicgrid_congestion_params_rep10_tmax400_r210_260_dr5.csv",
+    outcomefn="periodicgrid_congestion_params_rep100_tmax400_r180_256_dr2_f0_1_tau0.csv",
     n_jobs=-2,
     ):
     """Run simulations all combinations of (r, delay) from (rs, delays). 
@@ -40,7 +41,7 @@ def run_sims(
     n_jobs -- number of jobs for parallel computation
     """
     
-
+    
     if pickledir is not None and (not os.path.isdir(pickledir)):
         os.mkdir(pickledir)
 
@@ -63,7 +64,7 @@ def run_sims(
 
     def run_sim_point(point, i):
         """Joblib helper function for parallel execution"""
-        env = simulation.do_sim(r=point[0], delay=point[1], f=point[2], until=until + point[1])
+        env = simulation.do_sim(r=point[0], delay=point[1], f=point[2], until=until + point[1], periodic=periodic)
         tttime = analyse.total_real_time(env)
         congested = analyse.is_congested(env)
         f_value = env.f
@@ -95,6 +96,7 @@ def run_sims(
     
     
 def run_sims_averaging(
+    periodic=True,
     until=400,
     rs=np.arange(255, 260, 5),
     delays=range(0, 11),
@@ -147,7 +149,7 @@ def run_sims_averaging(
     
     def run_sim_point(point, i):
         """Joblib helper function for parallel execution"""
-        env = simulation_av.do_sim(r=point[0], delay=point[1], f=point[2], Tav=Tav, until=until + point[1])
+        env = simulation_av.do_sim(r=point[0], delay=point[1], f=point[2], Tav=Tav, until=until + point[1], periodic=periodic)
         tttime = analyse.total_real_time(env)
         congested = analyse.is_congested(env)
         f_value = env.f
@@ -177,8 +179,6 @@ def run_sims_averaging(
         
     print("Done")
 
-run_sims()
-
 
 def compute_congested(pickledir, outcomefn):
     """ re-compute the outcomes-file for the simulation stored in pickledir """
@@ -195,3 +195,16 @@ def compute_congested(pickledir, outcomefn):
         writer = csv.writer(file)
         writer.writerow(["r", "delay", "repetition", "avgtime", "congested"])
         writer.writerows(outcomes)
+
+
+
+run_sims(until=400,
+    rs=np.arange(184, 202, 2),
+    delays=[15],
+    fs=[1],
+    pointlist=None,
+    repetitions=100,
+    pickledir=None,
+    outcomefn="periodicgrid_congestion_params_rep100_tmax400_r184_202_dr2_f0_10_tau15.csv",
+    n_jobs=-2,)
+
