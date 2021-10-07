@@ -6,7 +6,7 @@ import storing
 from cars import Car, DummyCar
 from network import Network
 
-
+#...
 def create_points(env):
     """creates random origin and destination nodes."""
     node_0 = np.random.randint(env.network.num_nodes)

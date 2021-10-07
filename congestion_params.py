@@ -229,14 +229,14 @@ def compute_congested(pickledir, outcomefn):
         writer.writerows(outcomes)
 
 
-run_sims(
-    until=400,
-    rs=np.arange(184, 202, 2),
-    delays=[15],
-    fs=[1],
-    pointlist=None,
-    repetitions=100,
-    pickledir=None,
-    outcomefn="periodicgrid_congestion_params_rep100_tmax400_r184_202_dr2_f0_10_tau15.csv",
-    n_jobs=-2,
-)
+# run_sims(
+#     until=400,
+#     rs=np.arange(184, 202, 2),
+#     delays=[15],
+#     fs=[1],
+#     pointlist=None,
+#     repetitions=100,
+#     pickledir=None,
+#     outcomefn="periodicgrid_congestion_params_rep100_tmax400_r184_202_dr2_f0_10_tau15.csv",
+#     n_jobs=-2,
+# )

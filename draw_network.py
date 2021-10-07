@@ -74,7 +74,6 @@ def plot_network(
             line_back_outline = line_there_outline = line_there_color
 
         if end == start - env.network.n_x:  # draw lanes going up
-            print((start, end), " goes up")
             start_pos = np.array(start_pos) * scale
             start_pos[0] += circle_diameter / 2 + edge_spacing
             start_pos[1] = height - start_pos[1] - circle_diameter / 2
@@ -91,7 +90,6 @@ def plot_network(
             )
 
         elif end == start + env.network.n_x:  # draw lanes going down
-            print((start, end), " goes down")
             start_pos = np.array(start_pos) * scale
             start_pos[0] += circle_diameter / 2 - edge_spacing
             start_pos[1] = height - start_pos[1] - circle_diameter / 2
@@ -108,7 +106,6 @@ def plot_network(
             )
 
         elif end == start + 1:  # draw lanes going right
-            print((start, end), " goes right")
             start_pos = np.array(start_pos) * scale
             start_pos[0] += circle_diameter / 2
             start_pos[1] = height - start_pos[1] - circle_diameter / 2 + edge_spacing
@@ -125,7 +122,6 @@ def plot_network(
             )
 
         elif end == start - 1:  # draw lanes going left
-            print((start, end), " goes left")
             start_pos = np.array(start_pos) * scale
             start_pos[0] += circle_diameter / 2
             start_pos[1] = height - start_pos[1] - circle_diameter / 2 - edge_spacing
