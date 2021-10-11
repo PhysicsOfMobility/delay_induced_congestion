@@ -14,12 +14,22 @@ class Car:
 
         """Initiate a car object in the simulation environment.
 
-        Keyword arguments:
-        start -- origin of the driver (as a node index)
-        end -- destination of the driver (as a node index)
-        delay -- information delay (default 0.0)
-        traffic_info -- whether or not the driver decides based on signalled information (default True)
-        beta -- parameter governing decision making in multinomial logit model (default 1.0)
+        Parameters
+        ----------
+        self : Car object
+        start : int
+                origin of the driver (as a node index)
+        end : int
+            destination of the driver (as a node index)
+        delay : float, default 0.0
+                information delay
+        traffic_info : bool, default True
+            whether or not the driver decides based on signalled information 
+        beta : float, default 1.0
+            parameter governing decision making in multinomial logit model
+            
+        Returns
+        -------
         """
 
         self.env = env
@@ -36,7 +46,15 @@ class Car:
         self.expected_time = 0
 
     def run(self):
-        """Choose a path from origin to destination, and travel on it."""
+        """Choose a path from origin to destination, and travel on it.
+        
+        Parameters
+        ----------
+        self : Car object
+        
+        Returns 
+        -------
+        """
         paths = self.env.network.shortestpaths(
             self.start, self.end
         )  # possible paths to consider
@@ -77,6 +95,18 @@ class DummyCar:
     """A dummy class for storing the attributes associated with the car."""
 
     def __init__(self, car: Car):
+        """
+        Inititate a dummy car
+        
+        Parameters
+        ----------
+        self : DummyCar object
+        car : Car object
+        
+        Returns
+        --------
+        
+        """
         self.start, self.end, self.delay, self.traffic_info = (
             car.start,
             car.end,

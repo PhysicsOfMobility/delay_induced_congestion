@@ -11,10 +11,17 @@ def delaycontourplot(file, tau_file, nu_file):
     Mathematica notebook to generate csv files or load delivered csv files
     from disk.
 
-    Args:
-        file (str): path to csv file
-        tau_file (str): path to csv file containing the delay times tau
-        nu_file (str): path to csv file containing the in-rate values
+    Parameters
+    -----------
+    file : str 
+            path to csv file containing stability information
+    tau_file : str
+                path to csv file containing the delay times tau
+    nu_file : str
+            path to csv file containing the in-rate values
+            
+    Returns 
+    -------
     """
 
     data = pd.read_csv(file, header=None)
@@ -61,13 +68,23 @@ def combinedcontourplot(file, avfile, tau_file, nu_file, av_taufile, av_nufile):
     """Plot contourplot for delay vs. in-rate for the case with time-averaged informatin (Fig. 3a).
     Use Mathematica generated csv files.
 
-    Args:
-        file (str): Path to TODO [describe csv file] csv file
-        avfile (str): Path to TODO
-        tau_file (str): Path to TODO
-        nu_file (str): Path to TODO
-        av_taufile (str): Path to TODO for T=50 from Mathematica calculation
-        av_nufile (str): Path to TODO
+    Parameters
+    -----------
+        file : str
+            Path to csv file containing stability information for non-averaged case
+        avfile : str
+                Path to csv file containing stability information for averaged case
+        tau_file : str
+                Path to csv file containing the delay times tau for non-averaged case
+        nu_file : str
+               Path to csv file containing the in-rate values for non-averaged case
+        av_taufile : str 
+                Path to csv file containing the delay times tau for averaged case
+        av_nufile : str 
+                Path to csv file containing the in-rate values for averaged case
+    
+    Returns 
+    -------
     """
     av_tau_vals = pd.read_csv(av_taufile, header=None).to_numpy()
     av_stab_vals = pd.read_csv(av_nufile, header=None).to_numpy()
@@ -115,16 +132,36 @@ def plot_crit_inrates_time_averaging(tau1file, tau5file, tau10file):
     """Plot critical in-rates vs. averaging time window at which congestion occurs for different
     time delays. Uses Mathematica generate csv files. Run
 
-    Args:
-        tau1file (str): Path to csv file containing data for time delay 1
-        tau5file (str): Path to csv file containing data for time delay 5
-        tau10file (str): Path to csv file containing data for time delay 10
+    Parameters
+    ----------
+    tau1file : str
+                Path to csv file containing data for time delay 1
+    tau5file : str
+                Path to csv file containing data for time delay 5
+    tau10file : str
+                Path to csv file containing data for time delay 10
     """
 
     time_vals = np.arange(1, 51, 1)
     nu_vals = np.arange(1, 1.301, 0.001)
 
     def stab_line_finder(file, time_vals, nu_vals):
+        """Find the critical in-rates for each averaging time from Mathematica calculation results.
+        
+        Parameters 
+        ----------
+        file : str
+            Path to csv file containing stability information
+        time_vals : array-like
+                    averaging time values
+        nu_vals : array-like
+                    in-rate values
+        
+        Returns 
+        -------
+        array-like
+        """
+        
         tau_vals = pd.read_csv(file, header=None)
         tau_vals = tau_vals.to_numpy()
 

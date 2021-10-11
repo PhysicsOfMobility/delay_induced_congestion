@@ -18,27 +18,43 @@ def run_sims(
     until=400,
     rs=np.arange(180, 256, 2),
     delays=[0],
-    fs=[0.1],
+    fs=[1],
     pointlist=None,
     repetitions=100,
     pickledir=None,
-    outcomefn="periodicgrid_congestion_params_rep100_tmax400_r180_256_dr2_f0_1_tau0.csv",
+    outcomefn="congestion_params_file.csv",
     n_jobs=-2,
 ):
     """Run simulations all combinations of (r, delay) from (rs, delays).
     Write the simulation envs as pickles in files in pickledir.
     Write a summary as a csv into outcomefn.
 
-    Keyword arguments:
-    until -- maximal duration of simulation
-    rs -- values of the in-rate parameter to simulate
-    delays -- values of the delay parameter to simulate
-    fs -- fractions of informed drivers
-    pointlist -- parameter combinations for each simulation; defined below if None
-    repetitions -- number of simulation runs per set of parameters
-    pickledir -- directory to store simulation environments
-    outcomefn -- filename of the output file
-    n_jobs -- number of jobs for parallel computation
+    Parameters
+    ----------
+    periodic : bool, default True
+               determines whether the street network is a preriodic grid or not 
+    until : float, default 400
+            maximal duration of simulation
+    rs : numpy array or list, default np.arange(180, 256, 2)
+        values of the in-rate parameter to simulate
+    delays : numpy array or list, default [0]
+            values of the delay parameter to simulate
+    fs : numpy array or list, default [1]
+            fractions of informed drivers
+    pointlist : NoneType or list of tuples, default None
+                parameter combinations for each simulation; defined below if None
+    repetitions : int, default 100
+                    number of simulation runs per set of parameters
+    pickledir : NoneType or str, default None
+                directory to store simulation environments
+    outcomefn : str, default "congestion_params_file.csv"
+                filename of the output file
+    n_jobs : int, default -2
+            number of jobs for parallel computation
+            
+    Returns
+    -------
+    
     """
 
     if pickledir is not None and (not os.path.isdir(pickledir)):
@@ -116,11 +132,11 @@ def run_sims_averaging(
     rs=np.arange(255, 260, 5),
     delays=range(0, 11),
     Tav=50,
-    fs=(1,),
+    fs=[1],
     pointlist=None,
-    repetitions=10,
+    repetitions=100,
     pickledir=None,
-    outcomefn="aveperiodicgrid_congestion_params_Tav50_rep10_tmax400.csv",
+    outcomefn="ave_congestion_params_file.csv",
     n_jobs=-2,
 ):
 
@@ -128,17 +144,34 @@ def run_sims_averaging(
     Write the simulation envs as pickles in files in pickledir.
     Write a summary as a csv into outcomefn.
 
-    Keyword arguments:
-    until -- maximal duration of simulation
-    rs -- values of the in-rate parameter to simulate
-    delays -- values of the delay parameter to simulate
-    Tav -- averaging time window (default 50)
-    fs -- fractions of informed drivers
-    pointlist -- parameter combinations for each simulation; defined below if None
-    repetitions -- number of simulation runs per set of parameters (default 100)
-    pickledir -- directory to store simulation environments
-    outcomefn -- filename of the output file
-    n_jobs -- number of jobs for parallel computation
+    Parameters
+    ----------
+    periodic : bool, default True
+               determines whether the street network is a preriodic grid or not 
+    until : float, default 400
+            maximal duration of simulation
+    rs : numpy array or list, default np.arange(255, 260, 5)
+        values of the in-rate parameter to simulate
+    delays : numpy array or list, default range(0, 11)
+            values of the delay parameter to simulate
+    Tav : float, default 50
+            averaging time window 
+    fs : numpy array or list, default [1]
+            fractions of informed drivers
+    pointlist : NoneType or list of tuples, default None
+                parameter combinations for each simulation; defined below if None
+    repetitions : int, default 100
+                    number of simulation runs per set of parameters
+    pickledir : NoneType or str, default None
+                directory to store simulation environments
+    outcomefn : str, default "ave_congestion_params_file.csv"
+                filename of the output file
+    n_jobs : int, default -2
+            number of jobs for parallel computation
+            
+    Returns
+    -------
+    
     """
 
     # create dir if doesn't exist
@@ -210,21 +243,4 @@ def run_sims_averaging(
         print("Error: %s - %s." % (e.filename, e.strerror))
 
     print("Done")
-
-
-def compute_congested(pickledir, outcomefn):
-    """re-compute the outcomes-file for the simulation stored in pickledir"""
-    outcomes = []
-
-    for fn in os.listdir(pickledir):
-        path = os.path.join(pickledir, fn)
-        env = storing.load_env(path)
-        tttime = analyse.total_real_time(env)
-        congested = analyse.is_congested(env)
-        outcomes.append([env.r, env.delay, env.repetition, tttime, congested])
-
-    with open(outcomefn, "w") as file:
-        writer = csv.writer(file)
-        writer.writerow(["r", "delay", "repetition", "avgtime", "congested"])
-        writer.writerows(outcomes)
 

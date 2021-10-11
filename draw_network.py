@@ -20,14 +20,25 @@ def plot_network(
     The color of the lines between the nodes is a measure for the amount of cars currently on them.
     There are a few ways to adjust the output mainly by adjusting the variables below.
 
-    Keyword arguments:
-    env -- simulation environment
-    t_index -- time at which we screenshot the network
-    height -- figure height
-    width -- figure width
-    cmap -- colormap used to color streets given their load
-    save_to_file -- if True, a pdf file of the image is generated
-    alternative_data -- if None, the data used to color the network is the number of cars
+    Parameters
+    ----------
+    env : simpy simulation environment
+    t_index : int
+            time at which we screenshot the network
+    height : float, default 400
+            figure height
+    width : float, default 400
+            figure width
+    cmap : matplotlib colormap or NoneType, default None
+        colormap used to color streets given their load
+    save_to_file : bool, default False
+                    if True, a pdf file of the image is generated
+    alternative_data : NoneType or array-like, default None
+                    if None, the data used to color the network is the number of cars
+                    
+    Returns 
+    -------
+    PIL image
     """
 
     ################ overall settings ####################
@@ -155,7 +166,16 @@ def plot_network(
 
 
 def draw_car_distribution(env):
-    """Plot the network; edge colors indicate average number of cars. Save image to pdf file."""
+    """Plot the network; edge colors indicate average number of cars. Save image to pdf file.
+    
+    Parameters
+    ----------
+    env : simpy simulation environment
+    
+    Returns
+    -------
+    PIL image
+    """
     cars = analyse.avg_cars_streetwise(env, data_type="environment")
     max_N = 16
     colors = plt.get_cmap("viridis").colors

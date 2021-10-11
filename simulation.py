@@ -8,7 +8,17 @@ from network import Network
 
 #...
 def create_points(env):
-    """creates random origin and destination nodes."""
+    """Create random origin and destination nodes.
+    
+    Parameters
+    ----------
+    env : simpy simulation environment
+    
+    Returns
+    -------
+    int, int 
+                origin, destination node
+    """
     node_0 = np.random.randint(env.network.num_nodes)
     node_1 = np.random.randint(env.network.num_nodes)
     if node_0 == node_1:
@@ -20,12 +30,20 @@ def create_points(env):
 def car_creator(env, r, delay, f, beta):
     """Create new car objects
 
-    Keyword arguments:
-    env -- simulation environment
-    r -- avg rate of (cars/time unit) that spawn in the system
-    delay -- information time delay
-    f -- fraction of informed drivers
-    beta -- parameter governing decision making in multinomial logit model
+    Parameters
+    ----------
+    env : simpy simulation environment
+    r : float
+        avg rate of (cars/time unit) that spawn in the system
+    delay : float
+            information time delay
+    f : float 
+        fraction of informed drivers
+    beta : float 
+        parameter governing decision making in multinomial logit model
+    
+    Returns
+    --------
     """
     env.cars = []
     while True:
@@ -44,6 +62,16 @@ class DummyEnv:
     """For storing data about a simulation, to be able to pickle it"""
 
     def __init__(self, env: sp.Environment):
+        """Initialize a DummyEnv environment
+        
+        Parameters
+        ----------
+        self : DummyEnv object
+        env : simpy simulation environment
+        
+        Returns
+        -------
+        """
         self.t_0, self.N_0, self.delay, self.r, self.f = (
             env.t_0,
             env.N_0,
@@ -71,17 +99,32 @@ def do_sim(
     """Run the simulation with given parameters.
     Return the simpy environment object which we use for storing everything about the simulation
 
-    Keyword arguments:
-    r -- rate of incoming cars
-    delay -- information time delay
-    t_0 -- time needed to travel an empty street (default 1.0)
-    N_0 -- street capacity (default 10)
-    beta -- parameter governing decision making in multinomial logit model (default 1.0)
-    f -- fraction of informed drivers (default 1.0)
-    until -- simulation duration (default 400.0)
-    resolution -- time interval after which the simulation is recorded (default 1.0)
-    num_nodes -- number of nodes in the grid (has to be quadratic!)
-    periodic -- if True, the street network has periodic boundary conditions
+    Parameters
+    ----------
+    r : float, default 85
+        rate of incoming cars
+    delay : float, default 15
+            information time delay
+    t_0 : float, default 1.0 
+            time needed to travel an empty street
+    N_0 : int, default 10
+            street capacity
+    beta : float, default 1.0
+            parameter governing decision making in multinomial logit model
+    f : float, default 1.0 
+        fraction of informed drivers
+    until : float, default 400.0 
+            simulation duration
+    resolution : float, default 1.0 
+                time interval after which the simulation is recorded 
+    num_nodes : int, default 25 
+                number of nodes in the grid (has to be quadratic!)
+    periodic : bool, default True 
+            determines whether the street network has periodic boundary conditions
+            
+    Returns 
+    -------
+    simpy simulation environment
     """
     env = sp.Environment()
     env.t_0 = t_0

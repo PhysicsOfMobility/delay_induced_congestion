@@ -14,11 +14,21 @@ def phaseplot(outcome_file,
               ):
     '''From simulation outcomes, generate a phase diagram to see for which parameters the street network congests.
     
-    outcome-file -- csv outcome file, generated using congestion_params.py
-    critical_value -- a delay is considered critical if the fraction of congested simulations is > bound
-    rs -- numpy array of in-rates
-    delays -- numpy array of delays
-    rep -- number of repetitions per paramater setting
+    Parameters
+    -----------
+    outcome-file : str
+                path to csv outcome file, generated using congestion_params.py
+    critical_value : float, default 0.5
+                    a delay-in-rate pair is considered critical if the fraction of congested simulations is > bound
+    rs : array-like, default np.arange(70, 122, 2)
+        in-rates
+    delays : array-like, default np.arange(0, 21, 1) 
+            delays
+    rep : int, default 100 
+            number of repetitions per paramater setting
+            
+    Returns 
+    -------
     '''
     
     stability_matrix = phasematrix(file=outcome_file, 
@@ -48,12 +58,24 @@ def phasediffplot(outcome_file_noavg,
     '''From simulation outcomes with and without averaging, generate a phase diagram 
     that shows whether averaging prevents congestion or not.
     
-    outcome_file_noavg -- csv outcome file, generated using congestion_params.py without averaging
-    outcome_file_avg -- csv outcome file, generated using congestion_params.py with averaging
-    critical_value -- a delay is considered critical if the fraction of congested simulations is > bound
-    rs -- numpy array of in-rates
-    delays -- numpy array of delays
-    rep -- number of repetitions per paramater setting'''
+    Parameters
+    -----------
+    outcome_file_noavg : str
+                        path to csv outcome file, generated using congestion_params.py without averaging
+    outcome_file_avg : str 
+                        path to csv outcome file, generated using congestion_params.py with averaging
+    critical_value : float, default 0.5 
+                    a delay is considered critical if the fraction of congested simulations is > bound
+    rs : array-like, default np.arange(70, 122, 2) 
+        in-rates
+    delays : array-like, default np.arange(0, 21, 1) 
+        delays
+    rep : int, default 100 
+        number of repetitions per paramater setting
+        
+    Returns 
+    -------    
+    '''
     
     stability_matrix_noavg = phasematrix(file=outcome_file_noavg, 
                                   rs =rs, 
@@ -95,12 +117,22 @@ def critrates_plot(parameter_dict = {1: {'outcome': 'data/file1.csv',
     '''From simulation outcomes, plot the critical in-rates for given fraction of informed drivers
     and delays. 
     
-    parameter_dict -- dictionary of dictionaries with 3 (!) delay values as keys, 
-                        outcome filenames as one entry, and arrays of in-rates as a second entry
-    fvals -- fractions of informed drivers
-    rep -- number of simulations per parameter setting
-    boundvals -- list (length 3) of critical ratios of congested simulations
-    plotrange -- numpy array of in-rates for the final plot
+    Parameters
+    ----------
+    parameter_dict : dict
+                    dictionary of dictionaries with 3 (!) delay values as keys, 
+                    outcome filenames as one entry, and arrays of in-rates as a second entry
+    fvals : list, default [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+            fractions of informed drivers
+    rep : int, default 100 
+            number of simulations per parameter setting
+    boundvals : list 
+               3 critical ratios of congested simulations
+    plotrange : array-like
+                in-rates for the final plot
+    
+    Returns
+    -------
     '''
     
     delays = list(parameter_dict.keys())
@@ -147,14 +179,24 @@ def plot_critvalues_periodic(parameter_dict={0: {'low_bounds': [200, 210, 224, 2
     and fraction of informed drivers. Plot the critical in-rates against the fractions
     of informed drivers.
     
-    parameter_dict -- dictionary with delays as keys; low_bounds give the minimal in-rates for each simulation,
-                        high_bounds are the maximal in-rates for each simulation. Both lists have to have the 
-                        same length as fvals
-    fvals -- fractions of informed drivers
-    rep -- number of simulations per parameter setting
-    tmax -- maximal simulated time
-    boundvals -- critical fractions of congested simulations
-    plotrange -- range of in-rates which are plotted/
+    Parameters
+    ----------
+    parameter_dict : dict
+                    dictionary of dictionaries with 3 (!) delay values as keys, 
+                    outcome filenames as one entry, and arrays of in-rates as a second entry
+    fvals : list, default [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+            fractions of informed drivers
+    rep : int, default 100 
+            number of simulations per parameter setting
+    tmax : float, default 400
+            duration of the given simulation
+    boundvals : list 
+               3 critical ratios of congested simulations
+    plotrange : array-like
+                in-rates for the final plot
+    
+    Returns
+    -------
     '''
     
     
@@ -189,10 +231,20 @@ def phasematrix(file,
     '''From simulation outcomes, generate a numpy array that for each pair of in-rate
     and delay gives the fraction of simulations that end in a congested state.
     
-    file -- csv outcome file, generated using congestion_params.py
-    rs -- numpy array of in-rates 
-    delays -- numpy array of delays
-    rep -- number of repetitions per paramater setting
+    Parameters
+    ----------
+    file : str
+            path to csv outcome file, generated using congestion_params.py
+    rs : array-like, default np.arange(70, 122, 2) 
+            in-rates 
+    delays : array-like, default np.arange(0, 21, 1)
+            delays
+    rep : int, default 100 
+            number of repetitions per paramater setting
+            
+    Returns 
+    -------
+    array-like
     '''
     
     stab_matrix = np.zeros((len(rs), len(delays)))
@@ -237,11 +289,22 @@ def stability_varyf(file,
                     ):
     '''Find the fraction of congested simulations given a delay, in-rate and fraction of informed drivers.
     
-    file -- simulation output, generated using congestion_params.py
-    delays -- list of delays
-    rs -- array of in-rates
-    fvals -- list of fractions of informed drivers
-    rep -- number of simulations per set of parameters
+    Parameters
+    ----------
+    file : str
+            path to csv-file containing simulation output, generated using congestion_params.py
+    delays : list, default [10] 
+            delays
+    rs : array-like, default np.arange(75, 122, 1) 
+        in-rates
+    fvals : list, default [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] 
+            fractions of informed drivers
+    rep : int, default 100 
+            number of simulations per set of parameters
+            
+    Returns
+    --------
+    array-like
     '''
     
     output = pd.read_csv(file)
@@ -289,11 +352,21 @@ def bound_line(stab_matrix,
     
     '''Return an array of the delays at which a transition from free-flow to congestion occurs.
     
-    stab_matrix -- 2-dimensional numpy array that gives the fraction of congested simulations
+    Parameters
+    ----------
+    stab_matrix : array-like
+                    2-dimensional numpy array that gives the fraction of congested simulations
                     for each parameter pair.
-    bound -- a delay is considered critical if the fraction of congested simulations is > bound
-    rs -- numpy array of in-rates
-    delays -- numpy array of delays
+    bound : float, default 0.5 
+            a delay is considered critical if the fraction of congested simulations is > bound
+    rs : array-like, default np.arange(70, 122, 2) 
+        in-rates
+    delays : array-like, default np.arange(0, 21, 1) 
+            delays
+            
+    Returns 
+    -------
+    array-like
     '''
     
     crit_vals = np.zeros(len(delays))
@@ -312,12 +385,25 @@ def critical_rates(stab_matrix,
     '''From a matrix that gives the fraction of congested simulation runs, find the critical in-rates.
     Return a dictionary with boundvals as keys and arrays of critical in-rates as values.
     
-    stab_matrix -- 3-dimensional numpy array that gives the fraction of congested simulations
+    Parameters
+    -----------
+    stab_matrix : array-like
+                    3-dimensional numpy array that gives the fraction of congested simulations
                     for each set of in-rate, delay and fraction of informed drivers
-    rs -- numpy array of in-rates
-    delays -- list of delays
-    boundvals -- critical fractions of congested simulation runs for which the critical in-rates will be computed
-    fvals -- list of fractions of informed drivers
+    rs : array-like, default np.arange(75, 120, 1) 
+        in-rates
+    delays : list, default [1] 
+        delays
+    boundvals : list, default [0.25, 0.5, 0.75] 
+                critical fractions of congested simulation runs for which the critical in-rates will be computed
+    fvals : list, default [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] 
+            fractions of informed drivers
+    
+    Returns 
+    -------
+    dict
+            keys : critical fraction of congested simulation runs
+            values : corresponding in-rates for each fraction of informed drivers
     '''
     
     critval_dict = {}
@@ -342,13 +428,23 @@ def plot_phaseplot(stab_matrix,
                          ):
     '''Plot a phase diagram to see for which parameters the street network congests.
     
-    stab_matrix -- 2-dimensional numpy array that gives the fraction of congested simulations
+    Parameters
+    -----------
+    stab_matrix : array-like 
+                    2-dimensional numpy array that gives the fraction of congested simulations
                     for each parameter pair
-    critline -- array of delays at which a transition from free-flow to congestion occurs
-    rs -- numpy array of in-rates
-    delays -- numpy array of delays
-    delay_markers -- delay values that will be marked in the plot
-    rate_marker -- in-rate at which delays will be marked in the plot
+    critline : array-like
+                delays at which a transition from free-flow to congestion occurs
+    rs : array-like, default np.arange(70, 122, 2)
+        in-rates
+    delays : array-like, default np.arange(0, 21, 1)
+            delays
+    delay_markers : list, default [0, 5, 15] 
+                    delay values that will be marked in the plot
+    rate_marker : float, default 85 
+                    in-rate at which delays will be marked in the plot
+    Returns 
+    -------
     '''
     
     
@@ -384,14 +480,23 @@ def plot_phaseplot_diff(stab_matrix_avg,
                         delays = np.arange(0, 21, 1),
 ):
     '''Plot a phase diagram that shows whether averaging prevents congestion or not. 
-    stab_matrix_avg -- 2-dimensional numpy array that gives the fraction of congested simulations
+    
+    Parameters
+    -----------
+    stab_matrix_avg : array-like 
+                    2-dimensional numpy array that gives the fraction of congested simulations
                     for each parameter pair with averaging.
-    stab_matrix_noavg -- 2-dimensional numpy array that gives the fraction of congested simulations
+    stab_matrix_noavg : array-like 
+                    2-dimensional numpy array that gives the fraction of congested simulations
                     for each parameter pair without averaging.
-    critline_avg -- array of delays at which a transition from free-flow to congestion occurs with averaging.
-    critline_noavg -- array of delays at which a transition from free-flow to congestion occurs without averaging.
-    rs -- numpy array of in-rates
-    delays -- numpy array of delays
+    critline_avg : array-like 
+                    delays at which a transition from free-flow to congestion occurs with averaging.
+    critline_noavg : array-like 
+                    array of delays at which a transition from free-flow to congestion occurs without averaging.
+    rs : array-like, default np.arange(70, 122, 2) 
+            in-rates
+    delays : array-like, default np.arange(0, 21, 1) 
+            delays
     '''
     
     _, ax = plt.subplots()
@@ -429,13 +534,27 @@ def plot_critvals(crit_vals_del1,
                   ):
     '''Plot the critical in-rates corresponding to a given delay and fraction of informed drivers.
     
-    crit_vals_del1 -- dictionary with bounds as keys and arrays of critical in-rates as items; delay: delays[0]
-    crit_vals_del5 -- dictionary with bounds as keys and arrays of critical in-rates as items; delay: delays[1]
-    crit_vals_del15 -- dictionary with bounds as keys and arrays of critical in-rates as items; delay: delays[2]
-    bounds -- list (length 3) of fractions of congested simulations at the given in-rates 
-    delays -- list (length 3) of delays that are considered here
-    fvals -- list of fractions of informed drivers
-    rs -- in-rates 
+    Parameters
+    -----------
+    crit_vals_del1 : dict
+                    dictionary with bounds as keys and arrays of critical in-rates as values; delay: delays[0]
+    crit_vals_del5 : dict
+                    dictionary with bounds as keys and arrays of critical in-rates as values; delay: delays[1]
+    crit_vals_del15 : dict
+                    dictionary with bounds as keys and arrays of critical in-rates as values; delay: delays[2]
+    bounds : list, default [0.25, 0.5, 0.75]
+            3 fractions of congested simulations at the given in-rates 
+    delays : list, default [1,5,15] 
+            3 delays that are considered here
+    fvals : list, default [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+            fractions of informed drivers
+    rs : array-like, default np.arange(75, 120, 1)
+        in-rates
+    fval_ticks : list, default [0, 0.2, 0.4, 0.6, 0.8, 1]
+        plot ticks for the fractions of informed drivers
+    
+    Returns 
+    -------
     '''
         
     _, ax = plt.subplots()
@@ -473,15 +592,30 @@ def varyf_periodicgrid(
 ):
     '''For one pair of delay and fraction of informed drivers in the periodic grid, get three critical in-rates.
     
-    delay -- delay in the simulation
-    f --  fraction of informed drivers
-    numrep -- number of simulations for the parameter setup
-    nu_init -- minimal in-rate
-    nu_final -- maximal in-rate
-    dnu -- stepsize between subsequent in-rates
-    tmax -- duration of a simulation
-    boundvals -- list of length 3 of critical fraction of congested simulations; 
+    Parameters
+    -----------
+    delay : float, default 0 
+            delay in the simulation
+    f : float, default 0.1 
+        fraction of informed drivers
+    numrep : int, default 100
+            number of simulations for the parameter setup
+    nu_init : float, default 200 
+            minimal in-rate
+    nu_final : float, default 256 
+            maximal in-rate
+    dnu : float, default 2 
+            stepsize between subsequent in-rates
+    tmax : float, default 400 
+            duration of a simulation
+    boundvals : list, default [0.25, 0.5, 0.75] 
+                3 critical fractions of congested simulations; 
                     !caution! the values have to be in ascending order
+    
+    Returns
+    -------
+    float, float, float
+                        Critical in-rates corresponding to the boundvals
     '''
     
 
@@ -526,14 +660,28 @@ def critvalues_periodicgrid(tau,
                             boundvals=[0.25, 0.5, 0.75]):
     '''For a given delay, return the critical inrates for various fractions of informed drivers.
     
-    tau --  delay
-    low_bounds -- list of minimal in-rates for each fraction of informed drivers
-    high_bounds -- list of maximal in-rates for each fraction of informed drivers
-    fvals -- fractions of informed drivers
-    numrep -- number of simulation runs per parameter setting
-    tmax -- duration of simulation
-    boundvals -- list of length 3 of critical fraction of congested simulations; 
+    Parameters
+    ----------
+    tau : float
+            delay
+    low_bounds : list 
+                minimal in-rates for each fraction of informed drivers
+    high_bounds : list 
+                maximal in-rates for each fraction of informed drivers
+    fvals : list
+            fractions of informed drivers
+    numrep : int, default 100 
+            number of simulation runs per parameter setting
+    tmax : float, default 400 
+            duration of simulation
+    boundvals : list, default [0.25, 0.5, 0.75] 
+            3 critical fractions of congested simulations; 
                     !caution! the values have to be in ascending order
+    
+    Returns
+    --------
+    float, float, float
+                        Critical in-rates corresponding to the boundvals
     '''
     
     critvals_0 = []

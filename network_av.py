@@ -8,10 +8,21 @@ class Network:
     def __init__(self, env, num_nodes=25, t_0=1, N_0=10, periodic=True):
         """Construct a street network, which is a networkx periodic directed grid.
 
-        Keyword arguments:
-        num_nodes -- total number of nodes (has to be quadratic!)
-        t_0 -- travel time of empty street
-        N_0 -- effective capacity measure of streets
+        Parameters
+        ----------
+        self : Network object
+        env : simpy simulation environment
+        num_nodes : int, default 25 
+                    total number of nodes (has to be quadratic!)
+        t_0 : float, default 1 
+                travel time of empty street
+        N_0 : int, default 10 
+                effective capacity measure of streets
+        periodic : bool, default True
+                    determines whether the street network has periodic boundary conditions
+        
+        Returns
+        -------
         """
 
         gridsize = int(np.sqrt(num_nodes))
@@ -79,12 +90,31 @@ class Network:
         self.env = env
 
     def get_streets_flat(self):
-        """Get a list of the tuples which define streets in the network."""
-
+        """Get a list of the tuples which define streets in the network.
+        
+        Parameters
+        ----------
+        self : Network object
+        
+        Returns
+        -------
+        list
+        """
+        
         return self.edges
 
     def adjust_traveltime(self, edge):
-        """Adjust the edge attribute 'traveltime' according to the current street load."""
+        """Adjust the edge attribute 'traveltime' according to the current street load.
+        
+        Parameters
+        ----------
+        self : Network object
+        edge : tuple
+                tuple of start-node and end-node, defining current edge
+        
+        Returns
+        -------
+        """
 
         num_cars = self.graph[edge[0]][edge[1]]["numcars"]
         t_0 = self.graph[edge[0]][edge[1]]["t_0"]
@@ -97,17 +127,37 @@ class Network:
             self.graph[edge[0]][edge[1]]["traveltime"] = traveltime
 
     def get_traveltime(self, edge):
-        """Get the current edge traveltime."""
+        """Get the current edge traveltime.
+        
+        Parameters
+        ----------
+        self : Network object
+        edge : tuple
+                tuple of start-node and end-node, defining current edge
+        
+        Returns
+        -------
+        float
+        """
 
         return self.graph[edge[0]][edge[1]]["traveltime"]
 
     def shortestpaths(self, start, end, edgeweight="t_0"):
         """Return a list of all shortest edge paths from start to end.
 
-        Keyword arguments:
-        start -- origin node
-        end -- destination node
-        edgeweight -- edge attribute used to measure edge length (default = 't_0')
+        Parameters
+        -----------
+        self : Network object
+        start : int
+                origin node
+        end : int
+                destination node
+        edgeweight : str, default 't_0'
+                    edge attribute used to measure edge length
+                    
+        Returns
+        -------
+        list of lists of tuples
         """
         graph = self.graph
         shortest_nodepaths = list(
@@ -125,8 +175,17 @@ class Network:
         return shortest_paths
 
     def path_time(self, path):
-        """Total time needed to traverse a path of streets;
-        estimated based on averaged street load information.
+        """Total time needed to traverse a path of streets.
+        
+        Parameters
+        ----------
+        self : Network object
+        path : list of tuples
+                a list of subsequently visited edges
+        
+        Returns
+        -------
+        float
         """
         time = 0
         listlength = self.env.Tav / self.env.av_resolution
@@ -141,7 +200,19 @@ class Network:
         return time
 
     def node_positions(self, edge_length=1):
-        """Find x and y coordinates of all nodes in the grid."""
+        """Find x and y coordinates of all nodes in the grid.
+        
+        Parameters
+        ----------
+        self : Network object
+        edge_length : float
+                        length of streets in the network
+        
+        Returns
+        -------
+        dictionary
+                    keys are nodes, values are (x,y)-coordinate tuples
+        """
 
         pos_dict = {}
 
