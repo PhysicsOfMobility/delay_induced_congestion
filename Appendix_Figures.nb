@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    187596,       4334]
-NotebookOptionsPosition[    178218,       4203]
-NotebookOutlinePosition[    178560,       4218]
-CellTagsIndexPosition[    178517,       4215]
+NotebookDataLength[    170007,       3936]
+NotebookOptionsPosition[    163321,       3839]
+NotebookOutlinePosition[    163664,       3854]
+CellTagsIndexPosition[    163621,       3851]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -418,8 +418,6 @@ Cell[BoxData[
  CellChangeTimes->{{3.8425978498122363`*^9, 3.842597850954091*^9}},
  CellLabel->"In[22]:=",ExpressionUUID->"68333e0d-2c77-4ebe-ab78-49d2dc42d07c"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[{
  RowBox[{
   RowBox[{"MaxRealTau4", "=", 
@@ -448,115 +446,6 @@ Cell[BoxData[{
  CellChangeTimes->{{3.8425974210454693`*^9, 3.842597458739887*^9}, {
   3.842597490946*^9, 3.8425975480295887`*^9}},
  CellLabel->"In[24]:=",ExpressionUUID->"7304fb09-58f4-4024-a718-21db6005641c"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","lstol",
-   "\"The line search decreased the step size to within tolerance specified \
-by AccuracyGoal and PrecisionGoal but was unable to find a sufficient \
-decrease in the merit function. You may need more than \
-\\!\\(\\*RowBox[{\\\"MachinePrecision\\\"}]\\) digits of working precision to \
-meet these tolerances.\"",2,24,10,33245683940219996770,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.842597549869355*^9, 3.842597854496379*^9},
- CellLabel->
-  "During evaluation of \
-In[24]:=",ExpressionUUID->"a84929c8-e918-4785-ba5b-f411f83659b6"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","lstol",
-   "\"The line search decreased the step size to within tolerance specified \
-by AccuracyGoal and PrecisionGoal but was unable to find a sufficient \
-decrease in the merit function. You may need more than \
-\\!\\(\\*RowBox[{\\\"MachinePrecision\\\"}]\\) digits of working precision to \
-meet these tolerances.\"",2,24,11,33245683940219996770,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.842597549869355*^9, 3.8425978545502367`*^9},
- CellLabel->
-  "During evaluation of \
-In[24]:=",ExpressionUUID->"86a78247-cb0f-4c69-b08f-e9ea9d008dcd"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","lstol",
-   "\"The line search decreased the step size to within tolerance specified \
-by AccuracyGoal and PrecisionGoal but was unable to find a sufficient \
-decrease in the merit function. You may need more than \
-\\!\\(\\*RowBox[{\\\"MachinePrecision\\\"}]\\) digits of working precision to \
-meet these tolerances.\"",2,24,12,33245683940219996770,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.842597549869355*^9, 3.8425978546360064`*^9},
- CellLabel->
-  "During evaluation of \
-In[24]:=",ExpressionUUID->"d0b1b796-20bd-4628-b85f-4a1af58da9d1"],
-
-Cell[BoxData[
- TemplateBox[{
-  "General","stop",
-   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"FindRoot\\\", \
-\\\"::\\\", \\\"lstol\\\"}], \\\"MessageName\\\"]\\) will be suppressed \
-during this calculation.\"",2,24,13,33245683940219996770,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.842597549869355*^9, 3.842597854663933*^9},
- CellLabel->
-  "During evaluation of \
-In[24]:=",ExpressionUUID->"5af004d9-56b8-40d1-b83c-9dce399f9f26"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","lstol",
-   "\"The line search decreased the step size to within tolerance specified \
-by AccuracyGoal and PrecisionGoal but was unable to find a sufficient \
-decrease in the merit function. You may need more than \
-\\!\\(\\*RowBox[{\\\"MachinePrecision\\\"}]\\) digits of working precision to \
-meet these tolerances.\"",2,25,14,33245683940219996770,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.842597549869355*^9, 3.842597855963586*^9},
- CellLabel->
-  "During evaluation of \
-In[24]:=",ExpressionUUID->"1900acf2-cda5-4b82-8cd7-5cdf63fb8cfe"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","lstol",
-   "\"The line search decreased the step size to within tolerance specified \
-by AccuracyGoal and PrecisionGoal but was unable to find a sufficient \
-decrease in the merit function. You may need more than \
-\\!\\(\\*RowBox[{\\\"MachinePrecision\\\"}]\\) digits of working precision to \
-meet these tolerances.\"",2,25,15,33245683940219996770,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.842597549869355*^9, 3.8425978559904823`*^9},
- CellLabel->
-  "During evaluation of \
-In[24]:=",ExpressionUUID->"f54d1248-e7b1-4b79-99e9-409ee17f7865"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","lstol",
-   "\"The line search decreased the step size to within tolerance specified \
-by AccuracyGoal and PrecisionGoal but was unable to find a sufficient \
-decrease in the merit function. You may need more than \
-\\!\\(\\*RowBox[{\\\"MachinePrecision\\\"}]\\) digits of working precision to \
-meet these tolerances.\"",2,25,16,33245683940219996770,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.842597549869355*^9, 3.8425978560852613`*^9},
- CellLabel->
-  "During evaluation of \
-In[24]:=",ExpressionUUID->"2eae8c3a-4fed-4528-b649-893dd9f0a57b"],
-
-Cell[BoxData[
- TemplateBox[{
-  "General","stop",
-   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"FindRoot\\\", \
-\\\"::\\\", \\\"lstol\\\"}], \\\"MessageName\\\"]\\) will be suppressed \
-during this calculation.\"",2,25,17,33245683940219996770,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.842597549869355*^9, 3.842597856112159*^9},
- CellLabel->
-  "During evaluation of \
-In[24]:=",ExpressionUUID->"e13b79da-ff39-41f1-a641-ff2d1d29b82d"]
-}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -874,7 +763,7 @@ Cell[BoxData[
    3.842597858742217*^9, 3.842597886518772*^9}, 3.8425979677746315`*^9},
  CellLabel->"Out[28]=",ExpressionUUID->"b00219fe-538e-400f-8570-12fdf89264fc"]
 }, Open  ]]
-}, Closed]],
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -1074,8 +963,6 @@ Cell[BoxData[
    "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}]}]], "Input",
  CellLabel->"In[30]:=",ExpressionUUID->"6b0d3180-8f65-4265-9385-92730263e2f1"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[
  RowBox[{
   RowBox[{"periodValues", "=", " ", 
@@ -1092,61 +979,6 @@ Cell[BoxData[
   ";"}]], "Input",
  CellChangeTimes->{{3.842598819273774*^9, 3.842598831410267*^9}},
  CellLabel->"In[31]:=",ExpressionUUID->"25e94c56-a25f-48a4-9cbb-e6c125b083fc"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","lstol",
-   "\"The line search decreased the step size to within tolerance specified \
-by AccuracyGoal and PrecisionGoal but was unable to find a sufficient \
-decrease in the merit function. You may need more than \
-\\!\\(\\*RowBox[{\\\"MachinePrecision\\\"}]\\) digits of working precision to \
-meet these tolerances.\"",2,31,18,33245683940219996770,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8425988320040984`*^9},
- CellLabel->
-  "During evaluation of \
-In[31]:=",ExpressionUUID->"22f04858-dcac-4044-9976-e67318f67e81"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","lstol",
-   "\"The line search decreased the step size to within tolerance specified \
-by AccuracyGoal and PrecisionGoal but was unable to find a sufficient \
-decrease in the merit function. You may need more than \
-\\!\\(\\*RowBox[{\\\"MachinePrecision\\\"}]\\) digits of working precision to \
-meet these tolerances.\"",2,31,19,33245683940219996770,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8425988320300283`*^9},
- CellLabel->
-  "During evaluation of \
-In[31]:=",ExpressionUUID->"5445ebd0-d468-417b-9a9e-872935e89b1e"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","lstol",
-   "\"The line search decreased the step size to within tolerance specified \
-by AccuracyGoal and PrecisionGoal but was unable to find a sufficient \
-decrease in the merit function. You may need more than \
-\\!\\(\\*RowBox[{\\\"MachinePrecision\\\"}]\\) digits of working precision to \
-meet these tolerances.\"",2,31,20,33245683940219996770,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.842598833325596*^9},
- CellLabel->
-  "During evaluation of \
-In[31]:=",ExpressionUUID->"11cab029-1cfc-422f-874a-beef9ca6390b"],
-
-Cell[BoxData[
- TemplateBox[{
-  "General","stop",
-   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"FindRoot\\\", \
-\\\"::\\\", \\\"lstol\\\"}], \\\"MessageName\\\"]\\) will be suppressed \
-during this calculation.\"",2,31,21,33245683940219996770,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8425988333524857`*^9},
- CellLabel->
-  "During evaluation of \
-In[31]:=",ExpressionUUID->"1939c580-286f-4449-9161-25b02e4a7955"]
-}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -1300,8 +1132,6 @@ found as follows:\
   3.8425989194577417`*^9}},ExpressionUUID->"75be7692-0741-486c-9401-\
 81f5f37b4581"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[
  RowBox[{"\[IndentingNewLine]", 
   RowBox[{
@@ -1374,35 +1204,6 @@ Cell[BoxData[
       "]"}]}], ";"}]}]}]], "Input",
  CellChangeTimes->{{3.842598939372081*^9, 3.8425989546121693`*^9}},
  CellLabel->"In[35]:=",ExpressionUUID->"ca8a7c73-d07d-4fdc-94e6-214858e5e804"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","lstol",
-   "\"The line search decreased the step size to within tolerance specified \
-by AccuracyGoal and PrecisionGoal but was unable to find a sufficient \
-decrease in the merit function. You may need more than \
-\\!\\(\\*RowBox[{\\\"MachinePrecision\\\"}]\\) digits of working precision to \
-meet these tolerances.\"",2,39,22,33245683940219996770,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8425989638541403`*^9},
- CellLabel->
-  "During evaluation of \
-In[35]:=",ExpressionUUID->"ba614fa4-4468-4f90-b4c0-aa7e3264d771"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","lstol",
-   "\"The line search decreased the step size to within tolerance specified \
-by AccuracyGoal and PrecisionGoal but was unable to find a sufficient \
-decrease in the merit function. You may need more than \
-\\!\\(\\*RowBox[{\\\"MachinePrecision\\\"}]\\) digits of working precision to \
-meet these tolerances.\"",2,39,23,33245683940219996770,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.842598963880086*^9},
- CellLabel->
-  "During evaluation of \
-In[35]:=",ExpressionUUID->"5e9e0be5-73e8-427e-bdef-c24712ae6c97"]
-}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -1977,7 +1778,7 @@ nnrI/4UQvmm/DgJ5O8bJgFZAN+XEYWvjsjQVLFX6H2mVOt/I6d5+UII6LJ3Z
 b16GnOhgTn57wn4Uj5U8/QmEAE6eu/w2YDL0P6535Gg=\
 \>"],ExpressionUUID->"ba12b28b-ef91-41e1-9e21-6ae57a6fb39f"]
 }, Open  ]]
-}, Closed]]
+}, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2460,8 +2261,6 @@ Cell[BoxData[
    "]"}]}]], "Input",
  CellLabel->"In[15]:=",ExpressionUUID->"2b8d958c-0add-4ef4-a0d1-07c7ad63046f"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[{
  RowBox[{
   RowBox[{"StabBound\[Tau]0", "=", 
@@ -2498,169 +2297,6 @@ Cell[BoxData[{
     "]"}]}], ";"}]}], "Input",
  CellChangeTimes->{{3.842599435155822*^9, 3.842599448236861*^9}},
  CellLabel->"In[16]:=",ExpressionUUID->"5021cefb-3e21-4fd4-8b44-38fc310a91b5"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","lstol",
-   "\"The line search decreased the step size to within tolerance specified \
-by AccuracyGoal and PrecisionGoal but was unable to find a sufficient \
-decrease in the merit function. You may need more than \
-\\!\\(\\*RowBox[{\\\"MachinePrecision\\\"}]\\) digits of working precision to \
-meet these tolerances.\"",2,16,1,33245708319705999489,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8425994824405375`*^9},
- CellLabel->
-  "During evaluation of \
-In[16]:=",ExpressionUUID->"aaf0e1da-cced-4547-8212-43da22a3914d"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","lstol",
-   "\"The line search decreased the step size to within tolerance specified \
-by AccuracyGoal and PrecisionGoal but was unable to find a sufficient \
-decrease in the merit function. You may need more than \
-\\!\\(\\*RowBox[{\\\"MachinePrecision\\\"}]\\) digits of working precision to \
-meet these tolerances.\"",2,16,2,33245708319705999489,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8425994824734488`*^9},
- CellLabel->
-  "During evaluation of \
-In[16]:=",ExpressionUUID->"1c261bc4-b3bc-467e-9db3-fca8c838f418"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","lstol",
-   "\"The line search decreased the step size to within tolerance specified \
-by AccuracyGoal and PrecisionGoal but was unable to find a sufficient \
-decrease in the merit function. You may need more than \
-\\!\\(\\*RowBox[{\\\"MachinePrecision\\\"}]\\) digits of working precision to \
-meet these tolerances.\"",2,16,3,33245708319705999489,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8425994857828703`*^9},
- CellLabel->
-  "During evaluation of \
-In[16]:=",ExpressionUUID->"a0176769-502e-4a00-94a2-4b32497a2d84"],
-
-Cell[BoxData[
- TemplateBox[{
-  "General","stop",
-   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"FindRoot\\\", \
-\\\"::\\\", \\\"lstol\\\"}], \\\"MessageName\\\"]\\) will be suppressed \
-during this calculation.\"",2,16,4,33245708319705999489,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8425994858127904`*^9},
- CellLabel->
-  "During evaluation of \
-In[16]:=",ExpressionUUID->"e1c9151f-7d40-4a9b-9b25-9e068cc536d8"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","lstol",
-   "\"The line search decreased the step size to within tolerance specified \
-by AccuracyGoal and PrecisionGoal but was unable to find a sufficient \
-decrease in the merit function. You may need more than \
-\\!\\(\\*RowBox[{\\\"MachinePrecision\\\"}]\\) digits of working precision to \
-meet these tolerances.\"",2,17,5,33245708319705999489,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8425995472930007`*^9},
- CellLabel->
-  "During evaluation of \
-In[16]:=",ExpressionUUID->"cc11aefb-0270-4950-a546-47183da2b979"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","lstol",
-   "\"The line search decreased the step size to within tolerance specified \
-by AccuracyGoal and PrecisionGoal but was unable to find a sufficient \
-decrease in the merit function. You may need more than \
-\\!\\(\\*RowBox[{\\\"MachinePrecision\\\"}]\\) digits of working precision to \
-meet these tolerances.\"",2,17,6,33245708319705999489,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8425995473209257`*^9},
- CellLabel->
-  "During evaluation of \
-In[16]:=",ExpressionUUID->"8d8690b5-1659-4f74-a702-53e1fc5634ee"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","lstol",
-   "\"The line search decreased the step size to within tolerance specified \
-by AccuracyGoal and PrecisionGoal but was unable to find a sufficient \
-decrease in the merit function. You may need more than \
-\\!\\(\\*RowBox[{\\\"MachinePrecision\\\"}]\\) digits of working precision to \
-meet these tolerances.\"",2,17,7,33245708319705999489,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.842599551657913*^9},
- CellLabel->
-  "During evaluation of \
-In[16]:=",ExpressionUUID->"868ebede-7724-4526-ac8e-9d379aac946c"],
-
-Cell[BoxData[
- TemplateBox[{
-  "General","stop",
-   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"FindRoot\\\", \
-\\\"::\\\", \\\"lstol\\\"}], \\\"MessageName\\\"]\\) will be suppressed \
-during this calculation.\"",2,17,8,33245708319705999489,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8425995516878986`*^9},
- CellLabel->
-  "During evaluation of \
-In[16]:=",ExpressionUUID->"d901da86-13db-4590-bf48-872c974fb158"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","lstol",
-   "\"The line search decreased the step size to within tolerance specified \
-by AccuracyGoal and PrecisionGoal but was unable to find a sufficient \
-decrease in the merit function. You may need more than \
-\\!\\(\\*RowBox[{\\\"MachinePrecision\\\"}]\\) digits of working precision to \
-meet these tolerances.\"",2,18,9,33245708319705999489,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8425996769960012`*^9},
- CellLabel->
-  "During evaluation of \
-In[16]:=",ExpressionUUID->"38f2b1ab-368a-4a67-b852-3afa9117ff42"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","lstol",
-   "\"The line search decreased the step size to within tolerance specified \
-by AccuracyGoal and PrecisionGoal but was unable to find a sufficient \
-decrease in the merit function. You may need more than \
-\\!\\(\\*RowBox[{\\\"MachinePrecision\\\"}]\\) digits of working precision to \
-meet these tolerances.\"",2,18,10,33245708319705999489,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.842599677033901*^9},
- CellLabel->
-  "During evaluation of \
-In[16]:=",ExpressionUUID->"c7fdbfac-80be-4bab-bca2-d84b473b77f9"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","lstol",
-   "\"The line search decreased the step size to within tolerance specified \
-by AccuracyGoal and PrecisionGoal but was unable to find a sufficient \
-decrease in the merit function. You may need more than \
-\\!\\(\\*RowBox[{\\\"MachinePrecision\\\"}]\\) digits of working precision to \
-meet these tolerances.\"",2,18,11,33245708319705999489,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8425996821174774`*^9},
- CellLabel->
-  "During evaluation of \
-In[16]:=",ExpressionUUID->"7bfc9ff3-cf38-4ca4-9a29-0d1a7d45cc38"],
-
-Cell[BoxData[
- TemplateBox[{
-  "General","stop",
-   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"FindRoot\\\", \
-\\\"::\\\", \\\"lstol\\\"}], \\\"MessageName\\\"]\\) will be suppressed \
-during this calculation.\"",2,18,12,33245708319705999489,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.842599682152383*^9},
- CellLabel->
-  "During evaluation of \
-In[16]:=",ExpressionUUID->"688b05e9-fb95-4cc9-b323-20ca5267a35f"]
-}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -4201,8 +3837,8 @@ UPNe278Da38JNe8N3H8Q897ZewFdt84d5t8P9ssKQA58YQ8AD6mffQ==
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{958, 1108},
-WindowMargins->{{-7, Automatic}, {Automatic, 0}},
+WindowSize->{1280, 637},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
 FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
 StyleDefinitions->"Default.nb"
 ]
@@ -4222,7 +3858,7 @@ Cell[CellGroupData[{
 Cell[960, 29, 186, 3, 56, "Chapter",ExpressionUUID->"c3564c26-9760-42c9-8a7a-944d6a6a0954"],
 Cell[CellGroupData[{
 Cell[1171, 36, 201, 3, 64, "Subchapter",ExpressionUUID->"5af644ad-c75f-45b7-9c60-d8e5df3caab7"],
-Cell[1375, 41, 461, 10, 78, "Text",ExpressionUUID->"95a35ef6-c73a-4dd8-888b-fddb7b04ba2d"],
+Cell[1375, 41, 461, 10, 56, "Text",ExpressionUUID->"95a35ef6-c73a-4dd8-888b-fddb7b04ba2d"],
 Cell[1839, 53, 877, 27, 101, "Input",ExpressionUUID->"487fa619-9730-4740-be1e-294b3f98a72d"],
 Cell[2719, 82, 271, 6, 34, "Text",ExpressionUUID->"d10720cd-fbd1-489d-b641-f3902139d1e5"],
 Cell[2993, 90, 2093, 62, 101, "Input",ExpressionUUID->"96f048a5-5859-46f5-b080-63dccbddf032"],
@@ -4230,109 +3866,75 @@ Cell[5089, 154, 234, 6, 34, "Text",ExpressionUUID->"383fc9d2-f8a5-42fa-a5cd-69e3
 Cell[5326, 162, 1479, 41, 175, "Input",ExpressionUUID->"3055729f-55c7-4062-8fa6-48c6d8093575"],
 Cell[6808, 205, 1339, 37, 156, "Input",ExpressionUUID->"f8627d97-b417-493f-9b91-ebb0f568ea9a"],
 Cell[8150, 244, 248, 6, 34, "Text",ExpressionUUID->"bf8d5128-2309-41ff-9da2-213fb42edfc7"],
-Cell[8401, 252, 929, 26, 83, "Input",ExpressionUUID->"13e7a5ec-b7db-410c-a903-8414efd8cc93"],
+Cell[8401, 252, 929, 26, 64, "Input",ExpressionUUID->"13e7a5ec-b7db-410c-a903-8414efd8cc93"],
 Cell[9333, 280, 180, 3, 34, "Text",ExpressionUUID->"ef739bfb-3575-4056-a7e4-4d704b453765"],
-Cell[9516, 285, 1956, 53, 141, "Input",ExpressionUUID->"ef9f0b5a-3464-4feb-8a6c-8c6a34d7b7ec"],
-Cell[11475, 340, 380, 8, 56, "Text",ExpressionUUID->"342ce632-c0d0-42e1-a6c0-cb6e1fc73296"],
-Cell[11858, 350, 2628, 68, 327, "Input",ExpressionUUID->"68333e0d-2c77-4ebe-ab78-49d2dc42d07c"],
+Cell[9516, 285, 1956, 53, 104, "Input",ExpressionUUID->"ef9f0b5a-3464-4feb-8a6c-8c6a34d7b7ec"],
+Cell[11475, 340, 380, 8, 34, "Text",ExpressionUUID->"342ce632-c0d0-42e1-a6c0-cb6e1fc73296"],
+Cell[11858, 350, 2628, 68, 253, "Input",ExpressionUUID->"68333e0d-2c77-4ebe-ab78-49d2dc42d07c"],
+Cell[14489, 420, 1088, 27, 82, "Input",ExpressionUUID->"7304fb09-58f4-4024-a718-21db6005641c"],
 Cell[CellGroupData[{
-Cell[14511, 422, 1088, 27, 82, "Input",ExpressionUUID->"7304fb09-58f4-4024-a718-21db6005641c"],
-Cell[15602, 451, 612, 12, 39, "Message",ExpressionUUID->"a84929c8-e918-4785-ba5b-f411f83659b6"],
-Cell[16217, 465, 614, 12, 39, "Message",ExpressionUUID->"86a78247-cb0f-4c69-b08f-e9ea9d008dcd"],
-Cell[16834, 479, 614, 12, 39, "Message",ExpressionUUID->"d0b1b796-20bd-4628-b85f-4a1af58da9d1"],
-Cell[17451, 493, 469, 10, 21, "Message",ExpressionUUID->"5af004d9-56b8-40d1-b83c-9dce399f9f26"],
-Cell[17923, 505, 612, 12, 39, "Message",ExpressionUUID->"1900acf2-cda5-4b82-8cd7-5cdf63fb8cfe"],
-Cell[18538, 519, 614, 12, 39, "Message",ExpressionUUID->"f54d1248-e7b1-4b79-99e9-409ee17f7865"],
-Cell[19155, 533, 614, 12, 39, "Message",ExpressionUUID->"2eae8c3a-4fed-4528-b649-893dd9f0a57b"],
-Cell[19772, 547, 469, 10, 21, "Message",ExpressionUUID->"e13b79da-ff39-41f1-a641-ff2d1d29b82d"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[20278, 562, 796, 19, 156, "Input",ExpressionUUID->"33d935a2-cab8-4d99-9d81-68209ade9e40"],
-Cell[21077, 583, 14023, 291, 253, "Output",ExpressionUUID->"b00219fe-538e-400f-8570-12fdf89264fc"]
-}, Open  ]]
-}, Closed]],
-Cell[CellGroupData[{
-Cell[35149, 880, 219, 5, 48, "Subchapter",ExpressionUUID->"c74f6672-4689-42b9-b0bc-33b801e46ce6"],
-Cell[35371, 887, 389, 7, 34, "Text",ExpressionUUID->"3c4fc3e6-cb40-49b5-acd6-d4f2f3721584"],
-Cell[35763, 896, 3773, 93, 572, "Input",ExpressionUUID->"6093d8f9-7018-4226-8fe9-1845940d39f2"],
-Cell[39539, 991, 359, 8, 56, "Text",ExpressionUUID->"e3708676-8837-415c-89a1-55c77c3c7295"],
-Cell[39901, 1001, 2825, 73, 401, "Input",ExpressionUUID->"6b0d3180-8f65-4265-9385-92730263e2f1"],
-Cell[CellGroupData[{
-Cell[42751, 1078, 578, 15, 45, "Input",ExpressionUUID->"25e94c56-a25f-48a4-9cbb-e6c125b083fc"],
-Cell[43332, 1095, 592, 12, 39, "Message",ExpressionUUID->"22f04858-dcac-4044-9976-e67318f67e81"],
-Cell[43927, 1109, 592, 12, 39, "Message",ExpressionUUID->"5445ebd0-d468-417b-9a9e-872935e89b1e"],
-Cell[44522, 1123, 590, 12, 39, "Message",ExpressionUUID->"11cab029-1cfc-422f-874a-beef9ca6390b"],
-Cell[45115, 1137, 449, 10, 21, "Message",ExpressionUUID->"1939c580-286f-4449-9161-25b02e4a7955"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[45601, 1152, 2504, 64, 415, "Input",ExpressionUUID->"bd656c74-0287-42fb-a47e-eac6f46cd34d"],
-Cell[48108, 1218, 3458, 73, 251, "Output",ExpressionUUID->"845f120b-4a05-4c8d-bb0a-b45ca40e2a9f"]
-}, Open  ]],
-Cell[51581, 1294, 246, 6, 34, "Text",ExpressionUUID->"75be7692-0741-486c-9401-81f5f37b4581"],
-Cell[CellGroupData[{
-Cell[51852, 1304, 2628, 71, 364, "Input",ExpressionUUID->"ca8a7c73-d07d-4fdc-94e6-214858e5e804"],
-Cell[54483, 1377, 592, 12, 39, "Message",ExpressionUUID->"ba614fa4-4468-4f90-b4c0-aa7e3264d771"],
-Cell[55078, 1391, 590, 12, 39, "Message",ExpressionUUID->"5e9e0be5-73e8-427e-bdef-c24712ae6c97"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[55705, 1408, 1723, 45, 304, "Input",ExpressionUUID->"6aaaf987-3061-4765-b97f-87eec458fa34"],
-Cell[57431, 1455, 30810, 522, 296, 25830, 440, "CachedBoxData", "BoxData", "Output",ExpressionUUID->"ba12b28b-ef91-41e1-9e21-6ae57a6fb39f"]
-}, Open  ]]
-}, Closed]]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[88302, 1984, 221, 5, 113, "Chapter",ExpressionUUID->"d9948b99-16b5-4f40-b2d0-a9099b1cc513"],
-Cell[CellGroupData[{
-Cell[88548, 1993, 190, 3, 64, "Subchapter",ExpressionUUID->"73396f69-b797-4569-959f-8523fea74869"],
-Cell[88741, 1998, 236, 6, 34, "Text",ExpressionUUID->"39cdfba4-a112-4d0e-9cd5-621b52e4dc87"],
-Cell[88980, 2006, 201, 3, 45, "Input",ExpressionUUID->"37863e1b-a279-4d4f-9631-72d951bd4074"],
-Cell[89184, 2011, 362, 9, 86, "Input",ExpressionUUID->"fef5f46b-507b-4ade-bdec-5490028c32c8"],
-Cell[89549, 2022, 978, 29, 101, "Input",ExpressionUUID->"66066485-c034-4c00-a3e9-d4456ed9e82e"],
-Cell[90530, 2053, 336, 7, 56, "Text",ExpressionUUID->"f424c961-557b-4cae-b044-135d295f1f71"],
-Cell[90869, 2062, 1816, 53, 101, "Input",ExpressionUUID->"d76b7567-fef4-41f0-8643-d393e04121b3"],
-Cell[92688, 2117, 3198, 87, 179, "Input",ExpressionUUID->"f142d53f-f93d-4b2e-af3a-1ddb01f497bf"],
-Cell[95889, 2206, 2528, 61, 141, "Input",ExpressionUUID->"a5dddc2c-b573-4bdd-b090-69c805a1a744"],
-Cell[98420, 2269, 2190, 64, 139, "Input",ExpressionUUID->"29e5739a-0de4-4a71-a31e-f8759e83f2ca"],
-Cell[100613, 2335, 526, 10, 78, "Text",ExpressionUUID->"d4a666d6-b70c-41d1-a06c-80e1e1c2af89"],
-Cell[101142, 2347, 3251, 82, 251, "Input",ExpressionUUID->"d959483c-f35a-4753-a3b0-8677cae35fd9"],
-Cell[104396, 2431, 1295, 29, 290, "Input",ExpressionUUID->"2b8d958c-0add-4ef4-a0d1-07c7ad63046f"],
-Cell[CellGroupData[{
-Cell[105716, 2464, 1273, 35, 119, "Input",ExpressionUUID->"5021cefb-3e21-4fd4-8b44-38fc310a91b5"],
-Cell[106992, 2501, 591, 12, 39, "Message",ExpressionUUID->"aaf0e1da-cced-4547-8212-43da22a3914d"],
-Cell[107586, 2515, 591, 12, 39, "Message",ExpressionUUID->"1c261bc4-b3bc-467e-9db3-fca8c838f418"],
-Cell[108180, 2529, 591, 12, 39, "Message",ExpressionUUID->"a0176769-502e-4a00-94a2-4b32497a2d84"],
-Cell[108774, 2543, 448, 10, 21, "Message",ExpressionUUID->"e1c9151f-7d40-4a9b-9b25-9e068cc536d8"],
-Cell[109225, 2555, 591, 12, 39, "Message",ExpressionUUID->"cc11aefb-0270-4950-a546-47183da2b979"],
-Cell[109819, 2569, 591, 12, 39, "Message",ExpressionUUID->"8d8690b5-1659-4f74-a702-53e1fc5634ee"],
-Cell[110413, 2583, 589, 12, 39, "Message",ExpressionUUID->"868ebede-7724-4526-ac8e-9d379aac946c"],
-Cell[111005, 2597, 448, 10, 21, "Message",ExpressionUUID->"d901da86-13db-4590-bf48-872c974fb158"],
-Cell[111456, 2609, 591, 12, 39, "Message",ExpressionUUID->"38f2b1ab-368a-4a67-b852-3afa9117ff42"],
-Cell[112050, 2623, 590, 12, 39, "Message",ExpressionUUID->"c7fdbfac-80be-4bab-bca2-d84b473b77f9"],
-Cell[112643, 2637, 592, 12, 39, "Message",ExpressionUUID->"7bfc9ff3-cf38-4ca4-9a29-0d1a7d45cc38"],
-Cell[113238, 2651, 447, 10, 21, "Message",ExpressionUUID->"688b05e9-fb95-4cc9-b323-20ca5267a35f"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[113722, 2666, 1762, 46, 304, "Input",ExpressionUUID->"0fa970bd-7d5b-4107-a9ef-ce6c691e22a1"],
-Cell[115487, 2714, 22436, 497, 276, "Output",ExpressionUUID->"1fdced79-1bc8-416f-abb8-c43f707bd11d"]
+Cell[15602, 451, 796, 19, 156, "Input",ExpressionUUID->"33d935a2-cab8-4d99-9d81-68209ade9e40"],
+Cell[16401, 472, 14023, 291, 253, "Output",ExpressionUUID->"b00219fe-538e-400f-8570-12fdf89264fc"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[137972, 3217, 194, 3, 64, "Subchapter",ExpressionUUID->"321cafff-7fec-461a-8ded-242062e4dc9b"],
-Cell[138169, 3222, 237, 6, 34, "Text",ExpressionUUID->"7f0b44db-6122-49d8-8ee6-985071c5b66a"],
-Cell[138409, 3230, 131, 2, 45, "Input",ExpressionUUID->"06220b86-b381-432b-8619-2d8d308963b5"],
-Cell[138543, 3234, 362, 9, 86, "Input",ExpressionUUID->"dcf2b563-b44a-4864-a5cc-b1dfa2a730d3"],
-Cell[138908, 3245, 978, 29, 101, "Input",ExpressionUUID->"25faa259-0ca8-4af0-ad6d-3da12dbe6ae3"],
-Cell[139889, 3276, 311, 7, 56, "Text",ExpressionUUID->"0a3c6c05-2e55-497b-b700-1fd93b694b1d"],
-Cell[140203, 3285, 1816, 53, 101, "Input",ExpressionUUID->"8122fc3b-568c-4d5f-a532-d42ef5e8b61b"],
-Cell[142022, 3340, 3200, 87, 179, "Input",ExpressionUUID->"e72c4d6c-3329-4163-9202-3a448eb68852"],
-Cell[145225, 3429, 2535, 61, 141, "Input",ExpressionUUID->"59ddcb2c-7e80-4159-af8c-3afc6091657a"],
-Cell[147763, 3492, 447, 9, 78, "Text",ExpressionUUID->"10545c83-fb7f-44e1-af9a-d34fd66001ad"],
-Cell[148213, 3503, 3023, 78, 251, "Input",ExpressionUUID->"de84f399-4a1a-4186-8914-71b15a7d1053"],
-Cell[151239, 3583, 1295, 29, 290, "Input",ExpressionUUID->"52b6f7ac-530a-42c5-9d4d-549f21d4a7ab"],
-Cell[152537, 3614, 1275, 35, 119, "Input",ExpressionUUID->"e30b0e37-4287-4b1f-bbd7-ac579151ffbf"],
+Cell[30473, 769, 219, 5, 64, "Subchapter",ExpressionUUID->"c74f6672-4689-42b9-b0bc-33b801e46ce6"],
+Cell[30695, 776, 389, 7, 34, "Text",ExpressionUUID->"3c4fc3e6-cb40-49b5-acd6-d4f2f3721584"],
+Cell[31087, 785, 3773, 93, 534, "Input",ExpressionUUID->"6093d8f9-7018-4226-8fe9-1845940d39f2"],
+Cell[34863, 880, 359, 8, 34, "Text",ExpressionUUID->"e3708676-8837-415c-89a1-55c77c3c7295"],
+Cell[35225, 890, 2825, 73, 345, "Input",ExpressionUUID->"6b0d3180-8f65-4265-9385-92730263e2f1"],
+Cell[38053, 965, 578, 15, 45, "Input",ExpressionUUID->"25e94c56-a25f-48a4-9cbb-e6c125b083fc"],
 Cell[CellGroupData[{
-Cell[153837, 3653, 1698, 45, 267, "Input",ExpressionUUID->"d482f97f-ba83-4809-a7b3-300658b408b4"],
-Cell[155538, 3700, 22640, 498, 257, "Output",ExpressionUUID->"3328853a-8ca6-4320-abb2-e5e69a06bea5"]
+Cell[38656, 984, 2504, 64, 415, "Input",ExpressionUUID->"bd656c74-0287-42fb-a47e-eac6f46cd34d"],
+Cell[41163, 1050, 3458, 73, 251, "Output",ExpressionUUID->"845f120b-4a05-4c8d-bb0a-b45ca40e2a9f"]
+}, Open  ]],
+Cell[44636, 1126, 246, 6, 34, "Text",ExpressionUUID->"75be7692-0741-486c-9401-81f5f37b4581"],
+Cell[44885, 1134, 2628, 71, 271, "Input",ExpressionUUID->"ca8a7c73-d07d-4fdc-94e6-214858e5e804"],
+Cell[CellGroupData[{
+Cell[47538, 1209, 1723, 45, 304, "Input",ExpressionUUID->"6aaaf987-3061-4765-b97f-87eec458fa34"],
+Cell[49264, 1256, 30810, 522, 263, 25830, 440, "CachedBoxData", "BoxData", "Output",ExpressionUUID->"ba12b28b-ef91-41e1-9e21-6ae57a6fb39f"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[80135, 1785, 221, 5, 67, "Chapter",ExpressionUUID->"d9948b99-16b5-4f40-b2d0-a9099b1cc513"],
+Cell[CellGroupData[{
+Cell[80381, 1794, 190, 3, 64, "Subchapter",ExpressionUUID->"73396f69-b797-4569-959f-8523fea74869"],
+Cell[80574, 1799, 236, 6, 34, "Text",ExpressionUUID->"39cdfba4-a112-4d0e-9cd5-621b52e4dc87"],
+Cell[80813, 1807, 201, 3, 45, "Input",ExpressionUUID->"37863e1b-a279-4d4f-9631-72d951bd4074"],
+Cell[81017, 1812, 362, 9, 86, "Input",ExpressionUUID->"fef5f46b-507b-4ade-bdec-5490028c32c8"],
+Cell[81382, 1823, 978, 29, 101, "Input",ExpressionUUID->"66066485-c034-4c00-a3e9-d4456ed9e82e"],
+Cell[82363, 1854, 336, 7, 34, "Text",ExpressionUUID->"f424c961-557b-4cae-b044-135d295f1f71"],
+Cell[82702, 1863, 1816, 53, 101, "Input",ExpressionUUID->"d76b7567-fef4-41f0-8643-d393e04121b3"],
+Cell[84521, 1918, 3198, 87, 139, "Input",ExpressionUUID->"f142d53f-f93d-4b2e-af3a-1ddb01f497bf"],
+Cell[87722, 2007, 2528, 61, 120, "Input",ExpressionUUID->"a5dddc2c-b573-4bdd-b090-69c805a1a744"],
+Cell[90253, 2070, 2190, 64, 101, "Input",ExpressionUUID->"29e5739a-0de4-4a71-a31e-f8759e83f2ca"],
+Cell[92446, 2136, 526, 10, 56, "Text",ExpressionUUID->"d4a666d6-b70c-41d1-a06c-80e1e1c2af89"],
+Cell[92975, 2148, 3251, 82, 213, "Input",ExpressionUUID->"d959483c-f35a-4753-a3b0-8677cae35fd9"],
+Cell[96229, 2232, 1295, 29, 290, "Input",ExpressionUUID->"2b8d958c-0add-4ef4-a0d1-07c7ad63046f"],
+Cell[97527, 2263, 1273, 35, 119, "Input",ExpressionUUID->"5021cefb-3e21-4fd4-8b44-38fc310a91b5"],
+Cell[CellGroupData[{
+Cell[98825, 2302, 1762, 46, 304, "Input",ExpressionUUID->"0fa970bd-7d5b-4107-a9ef-ce6c691e22a1"],
+Cell[100590, 2350, 22436, 497, 276, "Output",ExpressionUUID->"1fdced79-1bc8-416f-abb8-c43f707bd11d"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[123075, 2853, 194, 3, 64, "Subchapter",ExpressionUUID->"321cafff-7fec-461a-8ded-242062e4dc9b"],
+Cell[123272, 2858, 237, 6, 34, "Text",ExpressionUUID->"7f0b44db-6122-49d8-8ee6-985071c5b66a"],
+Cell[123512, 2866, 131, 2, 45, "Input",ExpressionUUID->"06220b86-b381-432b-8619-2d8d308963b5"],
+Cell[123646, 2870, 362, 9, 86, "Input",ExpressionUUID->"dcf2b563-b44a-4864-a5cc-b1dfa2a730d3"],
+Cell[124011, 2881, 978, 29, 101, "Input",ExpressionUUID->"25faa259-0ca8-4af0-ad6d-3da12dbe6ae3"],
+Cell[124992, 2912, 311, 7, 34, "Text",ExpressionUUID->"0a3c6c05-2e55-497b-b700-1fd93b694b1d"],
+Cell[125306, 2921, 1816, 53, 101, "Input",ExpressionUUID->"8122fc3b-568c-4d5f-a532-d42ef5e8b61b"],
+Cell[127125, 2976, 3200, 87, 139, "Input",ExpressionUUID->"e72c4d6c-3329-4163-9202-3a448eb68852"],
+Cell[130328, 3065, 2535, 61, 120, "Input",ExpressionUUID->"59ddcb2c-7e80-4159-af8c-3afc6091657a"],
+Cell[132866, 3128, 447, 9, 56, "Text",ExpressionUUID->"10545c83-fb7f-44e1-af9a-d34fd66001ad"],
+Cell[133316, 3139, 3023, 78, 213, "Input",ExpressionUUID->"de84f399-4a1a-4186-8914-71b15a7d1053"],
+Cell[136342, 3219, 1295, 29, 290, "Input",ExpressionUUID->"52b6f7ac-530a-42c5-9d4d-549f21d4a7ab"],
+Cell[137640, 3250, 1275, 35, 119, "Input",ExpressionUUID->"e30b0e37-4287-4b1f-bbd7-ac579151ffbf"],
+Cell[CellGroupData[{
+Cell[138940, 3289, 1698, 45, 267, "Input",ExpressionUUID->"d482f97f-ba83-4809-a7b3-300658b408b4"],
+Cell[140641, 3336, 22640, 498, 257, "Output",ExpressionUUID->"3328853a-8ca6-4320-abb2-e5e69a06bea5"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
