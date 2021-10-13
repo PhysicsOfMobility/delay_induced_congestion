@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/382353753.svg)](https://zenodo.org/badge/latestdoi/382353753)
+
 # Delay-Induced Congestion
 
 In this repository we provide all code necessary to reproduce the results of the article "Obscuring digital route-choice information prevents delay-induced congestion" (V.Krall, M.Burg et al., https://arxiv.org/abs/2105.11790). 
